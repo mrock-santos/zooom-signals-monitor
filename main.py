@@ -19,7 +19,6 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 import yaml
 
@@ -215,7 +214,7 @@ _SOURCES = (
 
 
 def run_monitors(clubs: list, sources_config: dict, previous_state: dict,
-                 telegram: Optional[TelegramAlert], logger) -> dict:
+                 telegram: TelegramAlert | None, logger) -> dict:
     """
     Run all enabled monitors, isolated from each other.
 

@@ -3,7 +3,6 @@ import hashlib
 import time
 import logging
 from datetime import datetime
-from typing import Optional
 from bs4 import BeautifulSoup
 
 
@@ -104,7 +103,7 @@ class SiteMonitor:
         return hashlib.md5(text.encode('utf-8')).hexdigest()
 
 
-def detect_site_changes(old_hash: Optional[str], new_hash: str) -> Optional[dict]:
+def detect_site_changes(old_hash: str | None, new_hash: str) -> dict | None:
     """
     Detect if site content changed.
 
