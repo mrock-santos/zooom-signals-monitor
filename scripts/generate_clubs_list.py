@@ -30,12 +30,23 @@ logger = logging.getLogger(__name__)
 
 
 # Known club name patterns (PT/ES/EN variations)
+# Only clubs that appear in actual traffic data (Clarity + WordPress)
 CLUB_PATTERNS = {
+    # Brazilian clubs (found in data)
+    'corinthians': ['corinthians', 'timão', 'corinthian'],
+    'santos': ['santos', 'peixe'],
+    'athletico paranaense': ['athletico', 'athletico paranaense', 'cap', 'furacão'],
+    'grêmio': ['grêmio', 'gremio', 'tricolor gaúcho', 'tricolor gaucho'],
     'flamengo': ['flamengo', 'fla', 'mengão'],
     'palmeiras': ['palmeiras', 'verdão'],
-    'corinthians': ['corinthians', 'timão', 'corinthian'],
     'são paulo': ['são paulo', 'sao paulo', 'spfc', 'tricolor paulista'],
+
+    # European clubs (found in data)
     'real madrid': ['real madrid', 'madrid', 'merengues'],
+    'freiburg': ['freiburg', 'sc freiburg'],
+    'aston villa': ['aston villa', 'villa'],
+
+    # Other clubs (original list, not yet found in data but kept for potential matches)
     'barcelona': ['barcelona', 'barça', 'barca', 'blaugrana'],
     'manchester city': ['manchester city', 'man city', 'city'],
     'manchester united': ['manchester united', 'man united', 'united'],
