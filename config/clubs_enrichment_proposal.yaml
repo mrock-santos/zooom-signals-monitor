@@ -1,0 +1,264 @@
+# ENRICHMENT PROPOSAL - 8 Validated Clubs
+# Based on real traffic data (Clarity + WordPress)
+# Status: PENDING APPROVAL
+
+clubs:
+  # ========================================
+  # 1. REAL MADRID (689 pts, 11 mentions)
+  # ========================================
+  - id: real-madrid
+    name: Real Madrid
+    score: 689  # Remove after approval
+    mentions: 11  # Remove after approval
+    sources: "Clarity + WordPress"  # Remove after approval
+    league: La Liga
+    country: Spain
+
+    # Official domains
+    domains:
+      - realmadrid.com
+      # realmadrid.es removed: Red.es blocks WHOIS access (IP whitelist required)
+
+    # Official site monitoring
+    official_site:
+      url: https://www.realmadrid.com
+      monitor_pages:
+        - path: /es/futbol/plantilla
+          label: Plantilla (Squad)
+          type: structural
+        - path: /es/club/patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    # Google Trends keywords (from real mentions)
+    trends_keywords:
+      - Real Madrid
+      - Vinicius  # Mentioned in real URLs
+      - Courtois  # Mentioned in real URLs
+
+    whois_enabled: true
+    site_monitoring_enabled: true  # Pending robots.txt validation
+
+  # ========================================
+  # 2. ATHLETICO PARANAENSE (102 pts, 4 mentions)
+  # ========================================
+  - id: athletico-paranaense
+    name: Athletico Paranaense
+    score: 102
+    mentions: 4
+    sources: "Clarity + WordPress"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - athletico.com.br
+      - furacaoatletico.com
+
+    official_site:
+      url: https://www.athletico.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Athletico Paranaense
+      - CAP
+      - Athletico PR
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 3. CORINTHIANS (80 pts, 13 mentions)
+  # ========================================
+  - id: corinthians
+    name: Corinthians
+    score: 80
+    mentions: 13
+    sources: "Clarity only"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - corinthians.com.br
+
+    official_site:
+      url: https://www.corinthians.com.br
+      monitor_pages:
+        - path: /futebol-masculino/elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Corinthians
+      - Memphis Depay  # Mentioned in real URLs (renovation saga)
+      - Garro  # Mentioned in real URLs
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 4. GRÊMIO (69 pts, 3 mentions)
+  # ========================================
+  - id: gremio
+    name: Grêmio
+    score: 69
+    mentions: 3
+    sources: "Clarity + WordPress"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - gremio.net
+      - gremio.com.br
+
+    official_site:
+      url: https://gremio.net
+      monitor_pages:
+        - path: /futebol/elenco-profissional
+          label: Elenco Profissional (Squad)
+          type: structural
+        - path: /clube/parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Grêmio
+      - Tricolor Gaúcho
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 5. SANTOS (63 pts, 4 mentions)
+  # ========================================
+  - id: santos
+    name: Santos
+    score: 63
+    mentions: 4
+    sources: "Clarity + WordPress"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - santosfc.com.br
+
+    official_site:
+      url: https://www.santosfc.com.br
+      monitor_pages:
+        - path: /elenco-profissional
+          label: Elenco Profissional (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Santos
+      - Neymar  # Mentioned in real URLs
+      - Cuca  # Mentioned in real URLs (coach)
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 6. PALMEIRAS (21 pts, 4 mentions)
+  # ========================================
+  - id: palmeiras
+    name: Palmeiras
+    score: 21
+    mentions: 4
+    sources: "Clarity only"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - palmeiras.com.br
+
+    official_site:
+      url: https://www.palmeiras.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Palmeiras
+      - Verdão
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 7. BARCELONA (17 pts, 6 mentions)
+  # ========================================
+  - id: barcelona
+    name: Barcelona
+    score: 17
+    mentions: 6
+    sources: "Clarity only"
+    league: La Liga
+    country: Spain
+
+    domains:
+      - fcbarcelona.com
+      - fcbarcelona.es
+
+    official_site:
+      url: https://www.fcbarcelona.com
+      monitor_pages:
+        - path: /es/futbol/primer-equipo/jugadores
+          label: Jugadores (Squad)
+          type: structural
+        - path: /es/club/patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Barcelona
+      - Barça
+      - Flick  # Mentioned in real URLs (new coach)
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 8. FLAMENGO (15 pts, 4 mentions)
+  # ========================================
+  - id: flamengo
+    name: Flamengo
+    score: 15
+    mentions: 4
+    sources: "Clarity only"
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - flamengo.com.br
+
+    official_site:
+      url: https://www.flamengo.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Flamengo
+      - Mengão
+
+    whois_enabled: true
+    site_monitoring_enabled: true

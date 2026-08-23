@@ -1,0 +1,248 @@
+# Football Clubs Monitoring Configuration
+# Generated from real traffic data (Microsoft Clarity 30d + WordPress all-time)
+# Data period: 2026-07-24 to 2026-08-23
+# Validation: False positives eliminated, robots.txt verified with ZooomBot/1.0 User-Agent
+#
+# WHOIS monitoring: All 8 clubs enabled
+# Site monitoring: 6 clubs enabled, 2 disabled (Corinthians HTTP 405, Grêmio HTTP 403)
+#
+# Distribution:
+# - Brazil: 6 clubs (Athletico PR, Corinthians, Grêmio, Santos, Palmeiras, Flamengo)
+# - Spain: 2 clubs (Real Madrid, Barcelona)
+
+clubs:
+  # ========================================
+  # 1. REAL MADRID
+  # ========================================
+  - id: real-madrid
+    name: Real Madrid
+    league: La Liga
+    country: Spain
+
+    # WHOIS monitoring
+    domains:
+      - realmadrid.com
+      # realmadrid.es removed: Red.es blocks WHOIS access (IP whitelist required)
+
+    # Site monitoring
+    official_site:
+      url: https://www.realmadrid.com
+      monitor_pages:
+        - path: /es/futbol/plantilla
+          label: Plantilla (Squad)
+          type: structural
+        - path: /es/club/patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    # Google Trends keywords (from real traffic mentions)
+    trends_keywords:
+      - Real Madrid
+      - Vinicius
+      - Courtois
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 2. ATHLETICO PARANAENSE
+  # ========================================
+  - id: athletico-paranaense
+    name: Athletico Paranaense
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - athletico.com.br
+      - furacaoatletico.com
+
+    official_site:
+      url: https://www.athletico.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Athletico Paranaense
+      - CAP
+      - Athletico PR
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 3. CORINTHIANS
+  # ========================================
+  - id: corinthians
+    name: Corinthians
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - corinthians.com.br
+
+    official_site:
+      url: https://www.corinthians.com.br
+      monitor_pages:
+        - path: /futebol-masculino/elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Corinthians
+      - Memphis Depay  # Contract renovation saga
+      - Garro
+
+    whois_enabled: true
+    site_monitoring_enabled: false  # robots.txt returns HTTP 405
+
+  # ========================================
+  # 4. GRÊMIO
+  # ========================================
+  - id: gremio
+    name: Grêmio
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - gremio.net
+      - gremio.com.br
+
+    official_site:
+      url: https://gremio.net
+      monitor_pages:
+        - path: /futebol/elenco-profissional
+          label: Elenco Profissional (Squad)
+          type: structural
+        - path: /clube/parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Grêmio
+      - Tricolor Gaúcho
+
+    whois_enabled: true
+    site_monitoring_enabled: false  # robots.txt returns HTTP 403
+
+  # ========================================
+  # 5. SANTOS
+  # ========================================
+  - id: santos
+    name: Santos
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - santosfc.com.br
+
+    official_site:
+      url: https://www.santosfc.com.br
+      monitor_pages:
+        - path: /elenco-profissional
+          label: Elenco Profissional (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Santos
+      - Neymar  # Return speculation
+      - Cuca  # Coach
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 6. PALMEIRAS
+  # ========================================
+  - id: palmeiras
+    name: Palmeiras
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - palmeiras.com.br
+
+    official_site:
+      url: https://www.palmeiras.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /parceiros
+          label: Parceiros (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Palmeiras
+      - Verdão
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 7. BARCELONA
+  # ========================================
+  - id: barcelona
+    name: Barcelona
+    league: La Liga
+    country: Spain
+
+    domains:
+      - fcbarcelona.com
+      - fcbarcelona.es
+
+    official_site:
+      url: https://www.fcbarcelona.com
+      monitor_pages:
+        - path: /es/futbol/primer-equipo/jugadores
+          label: Jugadores (Squad)
+          type: structural
+        - path: /es/club/patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Barcelona
+      - Barça
+      - Flick  # New coach
+
+    whois_enabled: true
+    site_monitoring_enabled: true
+
+  # ========================================
+  # 8. FLAMENGO
+  # ========================================
+  - id: flamengo
+    name: Flamengo
+    league: Brasileirão Série A
+    country: Brazil
+
+    domains:
+      - flamengo.com.br
+
+    official_site:
+      url: https://www.flamengo.com.br
+      monitor_pages:
+        - path: /elenco
+          label: Elenco (Squad)
+          type: structural
+        - path: /patrocinadores
+          label: Patrocinadores (Sponsors)
+          type: structural
+
+    trends_keywords:
+      - Flamengo
+      - Mengão
+
+    whois_enabled: true
+    site_monitoring_enabled: true
