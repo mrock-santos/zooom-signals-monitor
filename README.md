@@ -35,6 +35,27 @@ pip install -r requirements.txt
 - `config/clubs.yaml` - list of clubs to monitor (generated via scripts/generate_clubs_list.py)
 - `config/sources.yaml` - enable/disable sources, rate limits
 
+## Fase 1: Generate Clubs List
+
+```bash
+# Export data manually:
+# - Clarity: Sessions by URL (last 30 days)
+# - GSC: Top Queries with clicks (last 30 days)
+
+python scripts/generate_clubs_list.py \
+    --clarity exports/clarity_30d.csv \
+    --gsc exports/gsc_queries_30d.csv \
+    --output config/clubs.yaml
+
+# Manual enrichment required (see clubs.yaml.example):
+# 1. Verify each club is protagonist (not just mentioned as adversary)
+# 2. Fill in league, country
+# 3. Add domains via Google search "club name official website"
+# 4. Add official_site.url and monitor_pages (structural pages only)
+# 5. Add trends_keywords (club + key players from recent posts)
+# 6. Remove 'score' field after validation
+```
+
 ## Local Testing
 
 ```bash
