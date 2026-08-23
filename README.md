@@ -22,6 +22,15 @@ Detect factual signals before competition without depending on human sources or 
 2. **Site Monitoring** (investigative) - content changes on official pages (squad, sponsors)
 3. **Google Trends** (demand) - search spikes for club/player keywords
 
+## Requirements
+
+**Python 3.11+** required (uses modern syntax: `str | None`, `dict`, `list`)
+
+**Environment versions:**
+- Production (Oracle Cloud): Python 3.12.3 ✅
+- CI (GitHub Actions): Python 3.11 ✅
+- Local dev: Python 3.8.5 ⚠️ (cannot run tests locally - use CI)
+
 ## Setup
 
 ```bash
@@ -29,6 +38,8 @@ python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 ```
+
+**Note:** If local Python < 3.10, tests will fail with `TypeError: unsupported operand type(s) for |`. This is expected. Tests run in CI (Python 3.11) and production (Python 3.12.3).
 
 ## Configuration
 

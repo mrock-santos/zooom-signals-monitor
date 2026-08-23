@@ -2,7 +2,6 @@ import whois
 import time
 import logging
 from datetime import datetime, timedelta
-from typing import Optional, Dict, List
 
 
 class WhoisMonitor:
@@ -69,7 +68,7 @@ class WhoisMonitor:
             'last_checked': datetime.utcnow().isoformat()
         }
 
-    def _normalize_date(self, date) -> Optional[str]:
+    def _normalize_date(self, date) -> str | None:
         """
         Normalize date to ISO format.
 
@@ -90,7 +89,7 @@ class WhoisMonitor:
         return str(date) if date else None
 
 
-def detect_whois_changes(old_data: Optional[Dict], new_data: Dict, domain: str) -> List:
+def detect_whois_changes(old_data: dict | None, new_data: dict, domain: str) -> list:
     """
     Detect changes between old and new WHOIS data.
 
