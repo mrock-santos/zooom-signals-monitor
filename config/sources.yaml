@@ -11,7 +11,7 @@ sources:
     user_agent: "Mozilla/5.0 (compatible; ZooomBot/1.0; +https://zooomsports.com/bot)"
 
   google_trends:
-    enabled: false  # Set true only if Fase 2.3 validation passes
+    enabled: true  # Fase 2.3 viability test PASSED 3/3 on 2026-08-22
     rate_limit_seconds: 5
     timeout_seconds: 20
     max_retries: 2
