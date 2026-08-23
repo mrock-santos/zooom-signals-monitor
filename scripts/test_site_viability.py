@@ -14,8 +14,13 @@ Run LOCAL only, after robots.txt validation passes.
 import sys
 import time
 import hashlib
+import logging
 import requests
 from bs4 import BeautifulSoup
+
+# Setup logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 # Fix Windows console encoding
 if sys.platform == 'win32':
@@ -46,10 +51,10 @@ def hash_content(html: str) -> str:
 
 def test_site(url: str, label: str):
     """Test one site for viability."""
-    print(f"\n{'='*60}")
-    print(f"Testing: {label}")
-    print(f"URL: {url}")
-    print('='*60)
+    logger.info(f"\n{'='*60}")
+    logger.info(f"Testing: {label}")
+    logger.info(f"URL: {url}")
+    logger.info('='*60)
 
     try:
         # First fetch
@@ -58,11 +63,11 @@ def test_site(url: str, label: str):
         elapsed1 = time.time() - start
 
         if resp1.status_code != 200:
-            print(f"❌ HTTP {resp1.status_code}")
+            logger.error(f"❌ HTTP {resp1.status_code}")
             return False
 
         hash1 = hash_content(resp1.text)
-        print(f"✅ First fetch: {elapsed1:.2f}s, hash={hash1[:12]}...")
+        logger.info(f"✅ First fetch: {elapsed1:.2f}s, hash={hash1[:12]}...")
 
         # Wait before second fetch
         time.sleep(5)
@@ -73,44 +78,44 @@ def test_site(url: str, label: str):
         elapsed2 = time.time() - start
 
         hash2 = hash_content(resp2.text)
-        print(f"✅ Second fetch: {elapsed2:.2f}s, hash={hash2[:12]}...")
+        logger.info(f"✅ Second fetch: {elapsed2:.2f}s, hash={hash2[:12]}...")
 
         if hash1 == hash2:
-            print(f"✅ Hash STABLE (no dynamic content leaking)")
+            logger.info(f"✅ Hash STABLE (no dynamic content leaking)")
         else:
-            print(f"⚠️  Hash CHANGED between requests")
-            print(f"   This may indicate dynamic content not being filtered")
-            print(f"   Review _hash_content() logic")
+            logger.error(f"⚠️  Hash CHANGED between requests")
+            logger.error(f"   This may indicate dynamic content not being filtered")
+            logger.error(f"   Review _hash_content() logic")
 
         if elapsed1 > 15 or elapsed2 > 15:
-            print(f"⚠️  Slow response (>{elapsed1:.1f}s or {elapsed2:.1f}s)")
+            logger.error(f"⚠️  Slow response (>{elapsed1:.1f}s or {elapsed2:.1f}s)")
 
         return True
 
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code in (403, 429):
-            print(f"❌ BLOCKED: HTTP {e.response.status_code}")
-            print(f"   robots.txt may allow, but server blocks User-Agent")
-        else:
-            print(f"❌ HTTP Error: {e}")
-        return False
-
     except requests.exceptions.Timeout:
-        print(f"❌ TIMEOUT (>15s)")
+        logger.error(f"❌ TIMEOUT (>15s)")
         return False
 
     except Exception as e:
-        print(f"❌ ERROR: {type(e).__name__}: {e}")
+        # Catch HTTP errors via status code check or other exceptions
+        if hasattr(e, 'response') and hasattr(e.response, 'status_code'):
+            if e.response.status_code in (403, 429):
+                logger.error(f"❌ BLOCKED: HTTP {e.response.status_code}")
+                logger.error(f"   robots.txt may allow, but server blocks User-Agent")
+            else:
+                logger.error(f"❌ HTTP Error: {e}")
+        else:
+            logger.error(f"❌ ERROR: {type(e).__name__}: {e}")
         return False
 
 
 def main():
-    print("\n" + "="*60)
-    print("SITE MONITORING VIABILITY TEST")
-    print("="*60)
-    print(f"\nTesting {len(TEST_SITES)} sites")
-    print("⚠️  Run LOCAL only")
-    print("⚠️  Assumes robots.txt validation already passed\n")
+    logger.info("\n" + "="*60)
+    logger.info("SITE MONITORING VIABILITY TEST")
+    logger.info("="*60)
+    logger.info(f"\nTesting {len(TEST_SITES)} sites")
+    logger.info("⚠️  Run LOCAL only")
+    logger.info("⚠️  Assumes robots.txt validation already passed\n")
 
     results = []
     for url, label in TEST_SITES:
@@ -119,25 +124,25 @@ def main():
         time.sleep(3)
 
     # Summary
-    print(f"\n{'='*60}")
-    print("SUMMARY")
-    print('='*60)
+    logger.info(f"\n{'='*60}")
+    logger.info("SUMMARY")
+    logger.info('='*60)
 
     success_count = sum(1 for _, ok in results if ok)
-    print(f"✅ Successful: {success_count}/{len(results)}")
-    print(f"❌ Failed: {len(results) - success_count}/{len(results)}")
+    logger.info(f"✅ Successful: {success_count}/{len(results)}")
+    logger.info(f"❌ Failed: {len(results) - success_count}/{len(results)}")
 
     if success_count == len(results):
-        print(f"\n✅ SITE MONITORING is VIABLE")
-        print(f"\n📝 Next step: Enable in config/sources.yaml:")
-        print(f"   sources:")
-        print(f"     site_monitoring:")
-        print(f"       enabled: true")
+        logger.info(f"\n✅ SITE MONITORING is VIABLE")
+        logger.info(f"\n📝 Next step: Enable in config/sources.yaml:")
+        logger.info(f"   sources:")
+        logger.info(f"     site_monitoring:")
+        logger.info(f"       enabled: true")
     else:
-        print(f"\n❌ SITE MONITORING has ISSUES")
+        logger.error(f"\n❌ SITE MONITORING has ISSUES")
         failed = [label for label, ok in results if not ok]
-        print(f"   Failed sites: {', '.join(failed)}")
-        print(f"\n📝 Next step: Leave disabled, document issue")
+        logger.error(f"   Failed sites: {', '.join(failed)}")
+        logger.error(f"\n📝 Next step: Leave disabled, document issue")
 
 
 if __name__ == '__main__':

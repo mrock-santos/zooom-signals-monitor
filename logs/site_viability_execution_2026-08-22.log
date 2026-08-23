@@ -1,0 +1,38 @@
+
+============================================================
+SITE MONITORING VIABILITY TEST
+============================================================
+
+Testing 2 sites
+\u26a0\ufe0f  Run LOCAL only
+\u26a0\ufe0f  Assumes robots.txt validation already passed
+
+
+============================================================
+Testing: Flamengo - Elenco
+URL: https://www.flamengo.com.br/elenco
+============================================================
+\u2705 First fetch: 1.41s, hash=da5aa53c8b95...
+\u2705 Second fetch: 0.26s, hash=da5aa53c8b95...
+\u2705 Hash STABLE (no dynamic content leaking)
+
+============================================================
+Testing: Real Madrid - Squad
+URL: https://www.realmadrid.com/en/football/squad
+============================================================
+\u2705 First fetch: 0.32s, hash=c3d99bb76fff...
+\u2705 Second fetch: 0.09s, hash=c3d99bb76fff...
+\u2705 Hash STABLE (no dynamic content leaking)
+
+============================================================
+SUMMARY
+============================================================
+\u2705 Successful: 2/2
+\u274c Failed: 0/2
+
+\u2705 SITE MONITORING is VIABLE
+
+\U0001f4dd Next step: Enable in config/sources.yaml:
+   sources:
+     site_monitoring:
+       enabled: true
