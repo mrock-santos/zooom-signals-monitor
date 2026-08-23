@@ -12,6 +12,7 @@ Usage:
 """
 
 import argparse
+import copy
 import json
 import os
 import sys
@@ -60,32 +61,46 @@ def save_state(path: str, state: dict) -> None:
         json.dump(state, f, indent=2, ensure_ascii=False)
 
 
+def _is_error_entry(data) -> bool:
+    """True if a monitor entry represents a failed check rather than real data."""
+    return isinstance(data, dict) and 'error' in data
+
+
 def build_state(results: dict, previous_state: dict) -> dict:
     """
-    Pivot source-keyed monitor results into the club-keyed state layout.
+    Merge source-keyed monitor results into the club-keyed state layout.
 
     Monitors return {source: {club_id: {key: data}}}, but change detection
     reads state['clubs'][club_id][source][key]. This function performs that
     inversion so the next run can actually compare against this run.
 
-    Entries that failed this run ({'error': ...}) do NOT overwrite a healthy
-    previous value - otherwise a transient failure would destroy the baseline
-    and produce a false "changed" alert on the following run.
+    The previous state is the starting point and is only ever *overwritten*,
+    never rebuilt. Baselines must survive every kind of absence:
+      - monitor crashed  -> its source key is missing from `results`
+      - source disabled  -> same
+      - club disabled    -> club key missing from that source's results
+    Losing any of those would re-emit `new_domain` for every domain on the
+    next successful run.
+
+    Two further rules:
+      - an entry that failed this run ({'error': ...}) never overwrites a
+        healthy previous value;
+      - an error entry with no previous value is dropped entirely, because
+        detect_whois_changes() treats any non-None old_data as a real record
+        and would emit registrar/nameserver/updated changes instead of one
+        new_domain.
     """
     previous_clubs = previous_state.get('clubs', {}) or {}
-    clubs_state = {}
+    clubs_state = copy.deepcopy(previous_clubs)
 
     for source, per_club in (results or {}).items():
         for club_id, entries in (per_club or {}).items():
-            club_bucket = clubs_state.setdefault(club_id, {})
-            source_bucket = club_bucket.setdefault(source, {})
-            prev_source = previous_clubs.get(club_id, {}).get(source, {}) or {}
+            source_bucket = clubs_state.setdefault(club_id, {}).setdefault(source, {})
 
             for key, data in (entries or {}).items():
-                if isinstance(data, dict) and 'error' in data and key in prev_source:
-                    source_bucket[key] = prev_source[key]
-                else:
-                    source_bucket[key] = data
+                if _is_error_entry(data):
+                    continue  # keep whatever baseline exists; never store an error
+                source_bucket[key] = data
 
     return clubs_state
 
@@ -110,10 +125,16 @@ def _run_whois(clubs, config, previous_state, telegram, logger, out) -> None:
             continue
 
         for domain, new_data in result['data'][club_id].items():
-            if 'error' in new_data:
+            if _is_error_entry(new_data):
                 continue
 
             old_data = _previous(previous_state, club_id, 'whois').get(domain)
+            # A legacy/error-only baseline is not a real record: treat it as a
+            # first check (one new_domain) instead of diffing against None
+            # fields and emitting three bogus "changed" alerts.
+            if _is_error_entry(old_data):
+                old_data = None
+
             for change in detect_whois_changes(old_data, new_data, domain):
                 logger.info("WHOIS change detected: %s - %s", club['name'], change['type'])
                 if telegram:
@@ -139,7 +160,7 @@ def _run_site(clubs, config, previous_state, telegram, logger, out) -> None:
             continue
 
         for page_path, new_data in result['data'][club_id].items():
-            if 'error' in new_data:
+            if _is_error_entry(new_data):
                 continue
 
             old_entry = _previous(previous_state, club_id, 'site_monitoring').get(page_path, {})
@@ -202,9 +223,10 @@ def run_monitors(clubs: list, sources_config: dict, previous_state: dict,
     the remaining monitors.
 
     Returns:
-        {'results': {source: data}, 'errors': [...], 'alerts_sent': int}
+        {'results': {source: data}, 'errors': [...], 'alerts_sent': int,
+         'sources_enabled': int}
     """
-    out = {'results': {}, 'errors': [], 'alerts_sent': 0}
+    out = {'results': {}, 'errors': [], 'alerts_sent': 0, 'sources_enabled': 0}
     sources = sources_config.get('sources', {}) or {}
     ran_any = False
 
@@ -212,6 +234,8 @@ def run_monitors(clubs: list, sources_config: dict, previous_state: dict,
         config = sources.get(config_key, {}) or {}
         if not config.get('enabled', False):
             continue
+
+        out['sources_enabled'] += 1
 
         # Delay only between sources that actually run
         if ran_any:
@@ -284,6 +308,17 @@ def main():
 
     # Note: git commit of state/ and logs/ is handled by the GitHub Actions
     # workflow (daily-check.yml). main.py only writes files.
+
+    # Fail the job when nothing worked, so a fully broken run is not green in CI.
+    # State is already persisted above, so the baseline is never lost.
+    enabled = run_result.get('sources_enabled', 0)
+    failed_sources = {e['source'] for e in run_result['errors']}
+    if enabled and len(failed_sources) >= enabled:
+        logger.error(
+            "All %d enabled source(s) failed: %s",
+            enabled, ', '.join(sorted(failed_sources))
+        )
+        sys.exit(1)
 
 
 if __name__ == '__main__':

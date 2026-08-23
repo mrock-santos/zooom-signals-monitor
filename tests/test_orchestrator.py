@@ -119,12 +119,64 @@ def test_build_state_preserves_previous_value_when_new_check_errored():
     assert state['flamengo']['whois']['flamengo.com.br']['registrar'] == 'GOOD'
 
 
-def test_build_state_keeps_error_when_no_previous_value():
+def test_build_state_drops_error_only_entry_without_baseline():
+    """An error dict must never become the baseline.
+
+    detect_whois_changes() treats any non-None old_data as a real record, so
+    persisting {'error': ...} makes the NEXT run emit registrar_changed +
+    nameservers_changed + whois_updated instead of one new_domain.
+    """
     results = {'whois': {'flamengo': {'flamengo.com.br': {'error': 'timeout'}}}}
 
     state = main.build_state(results, {'clubs': {}})
 
-    assert state['flamengo']['whois']['flamengo.com.br'] == {'error': 'timeout'}
+    assert 'flamengo.com.br' not in state.get('flamengo', {}).get('whois', {})
+
+
+def test_build_state_preserves_source_missing_from_this_run():
+    """A crashed/skipped monitor must not erase that source's baseline."""
+    previous = {'clubs': {'flamengo': {
+        'whois': {'flamengo.com.br': {'registrar': 'GOOD'}},
+        'site_monitoring': {'/elenco': {'hash': 'a' * 32}},
+    }}}
+    results = {'site_monitoring': {'flamengo': {'/elenco': {'hash': 'b' * 32}}}}
+
+    state = main.build_state(results, previous)
+
+    assert state['flamengo']['whois']['flamengo.com.br']['registrar'] == 'GOOD'
+    assert state['flamengo']['site_monitoring']['/elenco']['hash'] == 'b' * 32
+
+
+def test_build_state_preserves_everything_when_no_source_ran():
+    """All sources disabled => state must survive untouched."""
+    previous = {'clubs': {'flamengo': {'whois': {'flamengo.com.br': {'registrar': 'GOOD'}}}}}
+
+    state = main.build_state({}, previous)
+
+    assert state == previous['clubs']
+
+
+def test_build_state_preserves_club_missing_from_source_results():
+    """A club disabled/skipped for one source keeps its baseline for that source."""
+    previous = {'clubs': {
+        'flamengo': {'whois': {'flamengo.com.br': {'registrar': 'GOOD'}}},
+        'palmeiras': {'whois': {'palmeiras.com.br': {'registrar': 'ALSO_GOOD'}}},
+    }}
+    results = {'whois': {}}
+
+    state = main.build_state(results, previous)
+
+    assert state['flamengo']['whois']['flamengo.com.br']['registrar'] == 'GOOD'
+    assert state['palmeiras']['whois']['palmeiras.com.br']['registrar'] == 'ALSO_GOOD'
+
+
+def test_build_state_does_not_mutate_previous_state():
+    previous = {'clubs': {'flamengo': {'whois': {'flamengo.com.br': {'registrar': 'GOOD'}}}}}
+    results = {'whois': {'flamengo': {'flamengo.com.br': {'registrar': 'NEW'}}}}
+
+    main.build_state(results, previous)
+
+    assert previous['clubs']['flamengo']['whois']['flamengo.com.br']['registrar'] == 'GOOD'
 
 
 # --------------------------------------------------------------------------
@@ -141,7 +193,7 @@ def test_run_monitors_skips_disabled_sources(clubs, sources_all_disabled, logger
     whois_cls.assert_not_called()
     site_cls.assert_not_called()
     trends_cls.assert_not_called()
-    assert out == {'results': {}, 'errors': [], 'alerts_sent': 0}
+    assert out == {'results': {}, 'errors': [], 'alerts_sent': 0, 'sources_enabled': 0}
 
 
 def test_orchestrator_isolates_monitor_failures(clubs, sources_all_enabled, logger):
@@ -229,6 +281,45 @@ def test_run_monitors_skips_errored_entries(clubs, sources_all_enabled, logger):
 
     telegram.format_whois_alert.assert_not_called()
     assert out['alerts_sent'] == 0
+
+
+def test_run_monitors_treats_errored_baseline_as_first_check(clubs, sources_all_enabled, logger):
+    """A legacy error-only baseline must yield ONE new_domain, not 3 false changes."""
+    whois_instance = MagicMock()
+    whois_instance.check.return_value = {
+        'success': True,
+        'data': {'flamengo': {'flamengo.com.br': {'registrar': 'NEW', 'nameservers': ['ns1']}}},
+        'error': None,
+    }
+    ok = MagicMock()
+    ok.check.return_value = {'success': True, 'data': {}, 'error': None}
+    telegram = MagicMock()
+    telegram.send.return_value = True
+
+    previous = {'clubs': {'flamengo': {'whois': {'flamengo.com.br': {'error': 'timeout'}}}}}
+
+    with patch('main.WhoisMonitor', return_value=whois_instance), \
+         patch('main.SiteMonitor', return_value=ok), \
+         patch('main.TrendsMonitor', return_value=ok):
+
+        out = main.run_monitors(clubs, sources_all_enabled, previous, telegram, logger)
+
+    assert telegram.format_whois_alert.call_count == 1
+    assert telegram.format_whois_alert.call_args[0][1]['type'] == 'new_domain'
+    assert out['alerts_sent'] == 1
+
+
+def test_run_monitors_counts_enabled_sources(clubs, sources_all_enabled, logger):
+    ok = MagicMock()
+    ok.check.return_value = {'success': True, 'data': {}, 'error': None}
+
+    with patch('main.WhoisMonitor', return_value=ok), \
+         patch('main.SiteMonitor', return_value=ok), \
+         patch('main.TrendsMonitor', return_value=ok):
+
+        out = main.run_monitors(clubs, sources_all_enabled, {'clubs': {}}, None, logger)
+
+    assert out['sources_enabled'] == 3
 
 
 def test_run_monitors_site_alert_uses_label_and_full_url(clubs, sources_all_enabled, logger):
@@ -400,6 +491,50 @@ def test_main_exits_when_telegram_env_missing(tmp_path, sources_all_disabled, mo
         main.main()
 
     assert exc.value.code == 1
+
+
+def _patch_main_paths(monkeypatch, tmp_path, sources, argv):
+    _write_configs(tmp_path, sources)
+    state_file = tmp_path / 'state' / 'last_check.json'
+    monkeypatch.setattr(main, 'CLUBS_CONFIG', str(tmp_path / 'config' / 'clubs.yaml'))
+    monkeypatch.setattr(main, 'SOURCES_CONFIG', str(tmp_path / 'config' / 'sources.yaml'))
+    monkeypatch.setattr(main, 'STATE_FILE', str(state_file))
+    monkeypatch.setattr(main, 'setup_logger', lambda *a, **k: logging.getLogger('monitor'))
+    monkeypatch.setattr('sys.argv', argv)
+    return state_file
+
+
+def test_main_exits_nonzero_when_every_enabled_source_failed(
+        tmp_path, sources_all_disabled, monkeypatch):
+    """A run where nothing worked must fail the CI job, not show green."""
+    state_file = _patch_main_paths(monkeypatch, tmp_path, sources_all_disabled,
+                                   ['main.py', '--dry-run'])
+    monkeypatch.setattr(main, 'run_monitors', lambda *a, **k: {
+        'results': {},
+        'errors': [{'source': 'whois', 'error': 'boom', 'critical': True}],
+        'alerts_sent': 0,
+        'sources_enabled': 1,
+    })
+
+    with pytest.raises(SystemExit) as exc:
+        main.main()
+
+    assert exc.value.code == 1
+    # state must still be persisted before bailing out
+    assert state_file.exists()
+
+
+def test_main_exits_zero_when_some_sources_succeeded(
+        tmp_path, sources_all_disabled, monkeypatch):
+    _patch_main_paths(monkeypatch, tmp_path, sources_all_disabled, ['main.py', '--dry-run'])
+    monkeypatch.setattr(main, 'run_monitors', lambda *a, **k: {
+        'results': {},
+        'errors': [{'source': 'whois', 'error': 'boom', 'critical': True}],
+        'alerts_sent': 0,
+        'sources_enabled': 2,
+    })
+
+    main.main()  # must not raise SystemExit
 
 
 def test_main_exits_when_clubs_config_missing(tmp_path, sources_all_disabled, monkeypatch):
