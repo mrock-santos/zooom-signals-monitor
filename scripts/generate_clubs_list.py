@@ -21,10 +21,12 @@ from __future__ import annotations
 
 import argparse
 import csv
-import re
+import logging
 from collections import Counter
 from pathlib import Path
 import yaml
+
+logger = logging.getLogger(__name__)
 
 
 # Known club name patterns (PT/ES/EN variations)
@@ -91,8 +93,8 @@ def parse_clarity_csv(filepath: Path) -> Counter:
         sessions_col = columns.get('sessions') or columns.get('pageviews')
 
         if not url_col or not sessions_col:
-            print(f"WARNING: Clarity CSV missing expected columns. Found: {reader.fieldnames}")
-            print(f"         Expected: URL/Page and Sessions/Pageviews")
+            logger.warning(f"WARNING: Clarity CSV missing expected columns. Found: {reader.fieldnames}")
+            logger.warning(f"         Expected: URL/Page and Sessions/Pageviews")
             return club_scores
 
         for row in reader:
@@ -125,7 +127,7 @@ def parse_gsc_csv(filepath: Path) -> Counter:
         clicks_col = columns.get('clicks') or columns.get('cliques')
 
         if not query_col or not clicks_col:
-            print(f"WARNING: GSC CSV missing expected columns. Found: {reader.fieldnames}")
+            logger.warning(f"WARNING: GSC CSV missing expected columns. Found: {reader.fieldnames}")
             return club_scores
 
         for row in reader:
@@ -182,17 +184,19 @@ def generate_clubs_yaml(ranked_clubs: list, output_path: Path):
     with open(output_path, 'w', encoding='utf-8') as f:
         yaml.dump(clubs_data, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
-    print(f"\nSUCCESS: Generated {output_path}")
-    print(f"         {len(clubs_data['clubs'])} clubs listed")
-    print(f"\nWARNING: MANUAL ENRICHMENT REQUIRED:")
-    print(f"         - Verify each club is protagonist (not just adversary mention)")
-    print(f"         - Fill in league, country, domains")
-    print(f"         - Add official_site URL + monitor_pages")
-    print(f"         - Add trends_keywords (club + key players)")
-    print(f"         - Remove 'score' field after validation")
+    logger.info(f"\nSUCCESS: Generated {output_path}")
+    logger.info(f"         {len(clubs_data['clubs'])} clubs listed")
+    logger.warning(f"\nWARNING: MANUAL ENRICHMENT REQUIRED:")
+    logger.warning(f"         - Verify each club is protagonist (not just adversary mention)")
+    logger.warning(f"         - Fill in league, country, domains")
+    logger.warning(f"         - Add official_site URL + monitor_pages")
+    logger.warning(f"         - Add trends_keywords (club + key players)")
+    logger.warning(f"         - Remove 'score' field after validation")
 
 
 def main():
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+
     parser = argparse.ArgumentParser(description='Generate clubs.yaml from traffic data')
     parser.add_argument('--clarity', type=Path, help='Clarity export CSV')
     parser.add_argument('--gsc', type=Path, help='GSC queries export CSV')
@@ -204,35 +208,35 @@ def main():
 
     # Parse Clarity
     if args.clarity and args.clarity.exists():
-        print(f"Parsing Clarity: {args.clarity}")
+        logger.info(f"Parsing Clarity: {args.clarity}")
         clarity_scores = parse_clarity_csv(args.clarity)
-        print(f"  Found {len(clarity_scores)} clubs")
+        logger.info(f"  Found {len(clarity_scores)} clubs")
         club_scores.update(clarity_scores)
     else:
-        print(f"WARNING: Clarity file not found or not provided")
+        logger.warning(f"WARNING: Clarity file not found or not provided")
 
     # Parse GSC
     if args.gsc and args.gsc.exists():
-        print(f"Parsing GSC: {args.gsc}")
+        logger.info(f"Parsing GSC: {args.gsc}")
         gsc_scores = parse_gsc_csv(args.gsc)
-        print(f"  Found {len(gsc_scores)} clubs")
+        logger.info(f"  Found {len(gsc_scores)} clubs")
         club_scores.update(gsc_scores)
     else:
-        print(f"WARNING: GSC file not found or not provided")
+        logger.warning(f"WARNING: GSC file not found or not provided")
 
     # Rank
     ranked = club_scores.most_common(15)
 
-    print(f"\nTop clubs by combined score:")
+    logger.info(f"\nTop clubs by combined score:")
     for i, (club, score) in enumerate(ranked, 1):
-        print(f"   {i:2d}. {club.title():20s} - {score:6d} points")
+        logger.info(f"   {i:2d}. {club.title():20s} - {score:6d} points")
 
     # Generate YAML
     if ranked:
         generate_clubs_yaml(ranked, args.output)
     else:
-        print(f"\nERROR: No clubs found in data sources")
-        print(f"       Verify CSV files have expected columns")
+        logger.error(f"\nERROR: No clubs found in data sources")
+        logger.error(f"       Verify CSV files have expected columns")
 
 
 if __name__ == '__main__':
