@@ -56,6 +56,27 @@ python scripts/generate_clubs_list.py \
 # 6. Remove 'score' field after validation
 ```
 
+### Validate robots.txt
+
+Before finalizing clubs.yaml, validate that all official sites allow bot access:
+
+```bash
+# Check single URL
+python scripts/check_robots_txt.py https://www.flamengo.com.br
+
+# Check all clubs in config
+python scripts/check_robots_txt.py --yaml config/clubs.yaml
+```
+
+**Action items from validation:**
+- **Remove sites with status ❌ BLOCKED** — they explicitly disallow monitoring
+- **Manually review sites with status ⚠️ MANUAL REVIEW** — timeout/network error/parse error requires assessment before adding
+
+**Rules:**
+- 404 (no robots.txt) → allowed (default permit)
+- 200 + parsed → allowed per rules
+- Timeout/5xx/network error → manual review required (NOT auto-allowed)
+
 ## Local Testing
 
 ```bash
