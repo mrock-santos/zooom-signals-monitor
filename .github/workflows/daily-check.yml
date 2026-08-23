@@ -1,0 +1,54 @@
+name: Daily Signals Monitor
+
+on:
+  schedule:
+    # 10:00 UTC daily (7:00 Brasília)
+    - cron: '0 10 * * *'
+
+  workflow_dispatch:  # Manual trigger
+
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run monitors
+        run: |
+          python main.py
+
+      - name: Commit state changes
+        run: |
+          git config user.name "ZoOomSports Monitor Bot"
+          git config user.email "bot@zooomsports.com"
+          git add state/ logs/
+          git diff --cached --quiet || git commit -m "chore: update monitor state [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload logs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitor-logs-${{ github.run_number }}
+          path: logs/
+          retention-days: 30

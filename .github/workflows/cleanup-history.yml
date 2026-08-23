@@ -1,0 +1,38 @@
+name: Cleanup Old History
+
+on:
+  schedule:
+    # Sunday 00:00 UTC weekly
+    - cron: '0 0 * * 0'
+
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run cleanup script
+        run: |
+          python scripts/cleanup_old_logs.py
+
+      - name: Commit cleanup
+        run: |
+          git config user.name "ZoOomSports Monitor Bot"
+          git config user.email "bot@zooomsports.com"
+          git add logs/ state/
+          git diff --cached --quiet || git commit -m "chore: cleanup logs older than 90 days [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
