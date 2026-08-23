@@ -77,6 +77,24 @@ python scripts/check_robots_txt.py --yaml config/clubs.yaml
 - 200 + parsed → allowed per rules
 - Timeout/5xx/network error → manual review required (NOT auto-allowed)
 
+## Fase 2.1: Validate WHOIS
+
+Test WHOIS on real domains before enabling:
+
+```bash
+# Run LOCAL (not on server)
+python scripts/test_whois_viability.py
+```
+
+**Criteria for approval:**
+- ✅ All 4 test domains succeed
+- ✅ No rate limiting or blocking detected
+- ✅ Date formats handled (may be datetime or list)
+
+**If approved:** Set `sources.whois.enabled: true` in config/sources.yaml
+
+**If failed:** Leave disabled, document issue in `docs/incidents/`
+
 ## Local Testing
 
 ```bash
