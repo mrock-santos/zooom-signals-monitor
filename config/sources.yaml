@@ -1,0 +1,21 @@
+sources:
+  whois:
+    enabled: false  # Set true after Fase 2.1 validation
+    rate_limit_seconds: 2
+    timeout_seconds: 10
+
+  site_monitoring:
+    enabled: false  # Set true after Fase 2.2 validation
+    rate_limit_seconds: 3
+    timeout_seconds: 15
+    user_agent: "Mozilla/5.0 (compatible; ZooomBot/1.0; +https://zooomsports.com/bot)"
+
+  google_trends:
+    enabled: false  # Set true only if Fase 2.3 validation passes
+    rate_limit_seconds: 5
+    timeout_seconds: 20
+    max_retries: 2
+
+history:
+  retention_days: 90
+  cleanup_schedule: "weekly"
