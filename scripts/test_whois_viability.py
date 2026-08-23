@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Test WHOIS viability before enabling in sources.yaml.
 
@@ -11,9 +12,14 @@ Checks:
 Run LOCAL only, not on production server.
 """
 
+import sys
 import time
 from datetime import datetime
 import whois
+
+# Fix Windows console encoding for emoji
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 
 # Test domains across different TLDs
