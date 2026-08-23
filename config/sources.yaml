@@ -1,18 +1,18 @@
 sources:
   whois:
-    enabled: false  # Set true after Fase 2.1 validation
+    enabled: true  # Viability test PASSED 4/4 on 2026-08-22
     rate_limit_seconds: 2
     timeout_seconds: 10
 
   site_monitoring:
-    enabled: false  # Set true after Fase 2.2 validation
+    enabled: true  # Viability test PASSED 2/2 on 2026-08-22
     rate_limit_seconds: 3
     timeout_seconds: 15
     user_agent: "Mozilla/5.0 (compatible; ZooomBot/1.0; +https://zooomsports.com/bot)"
 
   google_trends:
-    enabled: true  # Fase 2.3 viability test PASSED 3/3 on 2026-08-22
-    rate_limit_seconds: 5
+    enabled: false  # Disabled: rate_limit mismatch (tested 10s, config 5s) - align to 10s before re-enabling
+    rate_limit_seconds: 10  # Aligned to actual viability test value
     timeout_seconds: 20
     max_retries: 2
 
