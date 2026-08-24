@@ -1,6 +1,6 @@
 name: Daily Signals Monitor
 
-on:
+'on':
   schedule:
     # 10:00 UTC daily (7:00 Brasília)
     - cron: '0 10 * * *'
