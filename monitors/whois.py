@@ -138,6 +138,9 @@ def _normalize_registrar(registrar: str | None) -> str:
         normalized = normalized.replace(char, ' ')
 
     # Split into words and remove common entity suffixes
+    # NOTE: 'CO' is included but ambiguous - could be part of a legitimate name.
+    # If a false negative occurs (real registrar change not detected), check if
+    # 'CO' removal is normalizing away too much. Current 8 clubs tested OK.
     suffixes = {'INC', 'LLC', 'CO', 'DOMAINS', 'COM', 'LTD', 'CORP', 'CORPORATION'}
     words = normalized.split()
     filtered_words = [w for w in words if w not in suffixes]
