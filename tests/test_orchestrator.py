@@ -193,7 +193,7 @@ def test_run_monitors_skips_disabled_sources(clubs, sources_all_disabled, logger
     whois_cls.assert_not_called()
     site_cls.assert_not_called()
     trends_cls.assert_not_called()
-    assert out == {'results': {}, 'errors': [], 'alerts_sent': 0, 'sources_enabled': 0}
+    assert out == {'results': {}, 'errors': [], 'alerts_sent': 0, 'sources_enabled': 0, 'sources_with_data': set()}
 
 
 def test_orchestrator_isolates_monitor_failures(clubs, sources_all_enabled, logger):
@@ -528,10 +528,11 @@ def test_main_exits_zero_when_some_sources_succeeded(
         tmp_path, sources_all_disabled, monkeypatch):
     _patch_main_paths(monkeypatch, tmp_path, sources_all_disabled, ['main.py', '--dry-run'])
     monkeypatch.setattr(main, 'run_monitors', lambda *a, **k: {
-        'results': {},
-        'errors': [{'source': 'whois', 'error': 'boom', 'critical': True}],
+        'results': {'whois': {'test-club': {'test.com': {'registrar': 'Test'}}}},
+        'errors': [{'source': 'site_monitoring', 'type': 'page_error', 'error': 'boom', 'critical': False}],
         'alerts_sent': 0,
         'sources_enabled': 2,
+        'sources_with_data': {'whois'}  # One source succeeded
     })
 
     main.main()  # must not raise SystemExit

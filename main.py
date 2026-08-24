@@ -145,6 +145,10 @@ def _run_whois(clubs, config, previous_state, telegram, logger, out) -> None:
 
     out['results']['whois'] = result['data']
 
+    # Mark source as having data if any club was processed
+    if result['data']:
+        out['sources_with_data'].add('whois')
+
     # Collect domain-level errors for observability
     if 'errors' in result and result['errors']:
         out['errors'].extend(result['errors'])
@@ -187,6 +191,10 @@ def _run_site(clubs, config, previous_state, telegram, logger, out) -> None:
 
     out['results']['site_monitoring'] = result['data']
 
+    # Mark source as having data if any club was processed
+    if result['data']:
+        out['sources_with_data'].add('site_monitoring')
+
     # Collect page-level errors for observability
     if 'errors' in result and result['errors']:
         out['errors'].extend(result['errors'])
@@ -214,6 +222,10 @@ def _run_trends(clubs, config, previous_state, telegram, logger, out) -> None:
 
     out['results']['google_trends'] = result['data']
 
+    # Mark source as having data if any club was processed
+    if result['data']:
+        out['sources_with_data'].add('google_trends')
+
 
 # (source key, config key, runner)
 _SOURCES = (
@@ -233,9 +245,15 @@ def run_monitors(clubs: list, sources_config: dict, previous_state: dict,
 
     Returns:
         {'results': {source: data}, 'errors': [...], 'alerts_sent': int,
-         'sources_enabled': int}
+         'sources_enabled': int, 'sources_with_data': set}
     """
-    out = {'results': {}, 'errors': [], 'alerts_sent': 0, 'sources_enabled': 0}
+    out = {
+        'results': {},
+        'errors': [],
+        'alerts_sent': 0,
+        'sources_enabled': 0,
+        'sources_with_data': set()
+    }
     sources = sources_config.get('sources', {}) or {}
     ran_any = False
 
@@ -322,14 +340,17 @@ def main():
     # Note: git commit of state/ and logs/ is handled by the GitHub Actions
     # workflow (daily-check.yml). main.py only writes files.
 
-    # Fail the job when nothing worked, so a fully broken run is not green in CI.
-    # State is already persisted above, so the baseline is never lost.
+    # Fail the job when NOTHING worked (no source produced any data).
+    # Partial success (some sources worked) is acceptable - state is already persisted.
+    # This prevents exit 1 when there's partial success (e.g., WHOIS worked but site had errors).
     enabled = run_result.get('sources_enabled', 0)
-    failed_sources = {e['source'] for e in run_result['errors']}
-    if enabled and len(failed_sources) >= enabled:
+    sources_with_data = run_result.get('sources_with_data', set())
+
+    if enabled and not sources_with_data:
+        # All enabled sources produced zero data - total failure
         logger.error(
-            "All %d enabled source(s) failed: %s",
-            enabled, ', '.join(sorted(failed_sources))
+            "All %d enabled source(s) produced no data - complete failure",
+            enabled
         )
         sys.exit(1)
 
