@@ -22,3 +22,22 @@
 2026-08-23 21:01:34 [INFO] WHOIS change detected: Real Madrid - nameservers_changed
 2026-08-23 21:01:39 [INFO] Running Site Monitoring...
 2026-08-23 21:02:13 [INFO] Run completed - 0 alerts sent, 0 monitor crashes, 0 page/domain errors
+2026-08-23 21:13:29 [INFO] DRY RUN MODE - no alerts will be sent
+2026-08-23 21:13:29 [INFO] Loaded 8 clubs from config
+2026-08-23 21:13:29 [INFO] Running WHOIS monitor...
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Real Madrid - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Athletico Paranaense - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Corinthians - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Grêmio - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Grêmio - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Santos - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Palmeiras - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Barcelona - new_domain
+2026-08-23 21:13:51 [INFO] WHOIS change detected: Flamengo - new_domain
+2026-08-23 21:13:56 [INFO] Running Site Monitoring...
+2026-08-23 21:14:31 [INFO] Run completed - 0 alerts sent, 0 monitor crashes, 0 page/domain errors
+2026-08-23 21:14:37 [INFO] DRY RUN MODE - no alerts will be sent
+2026-08-23 21:14:37 [INFO] Loaded 8 clubs from config
+2026-08-23 21:14:37 [INFO] Running WHOIS monitor...
+2026-08-23 21:15:03 [INFO] Running Site Monitoring...
+2026-08-23 21:15:38 [INFO] Run completed - 0 alerts sent, 0 monitor crashes, 0 page/domain errors

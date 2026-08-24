@@ -102,6 +102,50 @@ class WhoisMonitor:
         return str(date) if date else None
 
 
+def _normalize_registrar(registrar: str | None) -> str:
+    """
+    Normalize registrar string for comparison.
+
+    Removes punctuation, converts to uppercase, strips whitespace,
+    and removes common entity suffixes to compare only the root name.
+
+    This prevents false positives from format variations like:
+    - "Tucows Domains Inc." vs "TUCOWS.COM, CO."
+    - "Network Solutions, LLC" vs "Network Solutions LLC"
+
+    Args:
+        registrar: Raw registrar string from WHOIS
+
+    Returns:
+        Normalized registrar string (uppercase, no punctuation/suffixes)
+
+    Examples:
+        >>> _normalize_registrar("Tucows Domains Inc.")
+        'TUCOWS'
+        >>> _normalize_registrar("TUCOWS.COM, CO.")
+        'TUCOWS'
+        >>> _normalize_registrar("Network Solutions, LLC")
+        'NETWORK SOLUTIONS'
+    """
+    if not registrar:
+        return ""
+
+    # Convert to uppercase
+    normalized = registrar.upper()
+
+    # Remove punctuation (commas, periods)
+    for char in [',', '.']:
+        normalized = normalized.replace(char, ' ')
+
+    # Split into words and remove common entity suffixes
+    suffixes = {'INC', 'LLC', 'CO', 'DOMAINS', 'COM', 'LTD', 'CORP', 'CORPORATION'}
+    words = normalized.split()
+    filtered_words = [w for w in words if w not in suffixes]
+
+    # Join and strip
+    return ' '.join(filtered_words).strip()
+
+
 def detect_whois_changes(old_data: dict | None, new_data: dict, domain: str) -> list:
     """
     Detect changes between old and new WHOIS data.
@@ -129,8 +173,11 @@ def detect_whois_changes(old_data: dict | None, new_data: dict, domain: str) -> 
 
     # From here: independent IFs (NOT elif) to catch simultaneous changes
 
-    # Registrar changed
-    if old_data.get('registrar') != new_data.get('registrar'):
+    # Registrar changed (use normalized comparison to avoid format variations)
+    old_registrar_normalized = _normalize_registrar(old_data.get('registrar'))
+    new_registrar_normalized = _normalize_registrar(new_data.get('registrar'))
+
+    if old_registrar_normalized != new_registrar_normalized:
         changes.append({
             'type': 'registrar_changed',
             'domain': domain,

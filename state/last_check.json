@@ -1,33 +1,27 @@
 {
-  "last_run": "2026-08-24T00:02:13.625559",
+  "last_run": "2026-08-24T00:15:38.373734",
   "clubs": {
     "real-madrid": {
       "whois": {
         "realmadrid.com": {
-          "registrar": "Tucows Domains Inc.",
+          "registrar": "TUCOWS.COM, CO.",
           "updated_date": "2024-10-01",
           "expiry_date": "2034-09-23",
           "nameservers": [
             "PDNS80.ULTRADNS.BIZ",
             "PDNS80.ULTRADNS.COM",
             "PDNS80.ULTRADNS.NET",
-            "PDNS80.ULTRADNS.ORG"
+            "PDNS80.ULTRADNS.ORG",
+            "pdns80.ultradns.net",
+            "pdns80.ultradns.com",
+            "pdns80.ultradns.biz",
+            "pdns80.ultradns.org"
           ],
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-08-24T00:01:13.579832"
-        }
-      },
-      "site_monitoring": {
-        "/es/futbol/plantilla": {
-          "hash": "b3e69ecff7be1b1ef4de1a4e37215139",
-          "last_checked": "2026-08-23T23:45:27.607974"
-        },
-        "/es/club/patrocinadores": {
-          "hash": "b3e69ecff7be1b1ef4de1a4e37215139",
-          "last_checked": "2026-08-23T23:45:30.682332"
+          "last_checked": "2026-08-24T00:14:38.570360"
         }
       }
     },
@@ -41,13 +35,13 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:15.718368"
+          "last_checked": "2026-08-24T00:14:40.624594"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "08ec1462f41e5e36879e76615deab5fb",
-          "last_checked": "2026-08-24T00:01:39.874516"
+          "last_checked": "2026-08-24T00:15:04.704773"
         }
       }
     },
@@ -61,7 +55,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:17.761352"
+          "last_checked": "2026-08-24T00:14:42.678401"
         }
       }
     },
@@ -79,7 +73,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-08-24T00:01:21.048326"
+          "last_checked": "2026-08-24T00:14:45.830737"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -89,7 +83,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:23.089295"
+          "last_checked": "2026-08-24T00:14:47.863199"
         }
       }
     },
@@ -103,17 +97,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:25.131802"
+          "last_checked": "2026-08-24T00:14:49.896361"
         }
       },
       "site_monitoring": {
         "/elenco-profissional": {
           "hash": "b842ee899cfde13b8cdd0916bdfbb82a",
-          "last_checked": "2026-08-24T00:01:43.053536"
+          "last_checked": "2026-08-24T00:15:07.886954"
         },
         "/parceiros": {
           "hash": "c05e05fb3b7606c122ea713cd3fccaad",
-          "last_checked": "2026-08-24T00:01:46.222984"
+          "last_checked": "2026-08-24T00:15:11.056385"
         }
       }
     },
@@ -128,17 +122,17 @@
             "20260823 DSOK",
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:27.189419"
+          "last_checked": "2026-08-24T00:14:51.937706"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "c0ff6241e7cf163e07c135a32316212e",
-          "last_checked": "2026-08-24T00:01:50.277574"
+          "last_checked": "2026-08-24T00:15:14.862341"
         },
         "/parceiros": {
           "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
-          "last_checked": "2026-08-24T00:01:54.057268"
+          "last_checked": "2026-08-24T00:15:18.634457"
         }
       }
     },
@@ -162,25 +156,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-08-24T00:01:30.135209"
-        },
-        "fcbarcelona.es": {
-          "registrar": null,
-          "updated_date": null,
-          "expiry_date": null,
-          "nameservers": [],
-          "status": [],
-          "last_checked": "2026-08-23T23:45:18.491423"
+          "last_checked": "2026-08-24T00:14:54.899693"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "53a0feb2cbbbdb0714c574f0ee03b3ab",
-          "last_checked": "2026-08-24T00:01:57.722495"
+          "last_checked": "2026-08-24T00:15:22.154897"
         },
         "/es/club/patrocinadores": {
           "hash": "c1564140ef88f4ab85af5ab638f576fe",
-          "last_checked": "2026-08-24T00:02:01.738372"
+          "last_checked": "2026-08-24T00:15:25.612346"
         }
       }
     },
@@ -194,17 +180,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:01:32.193921"
+          "last_checked": "2026-08-24T00:14:56.939453"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-08-24T00:02:06.127564"
+          "last_checked": "2026-08-24T00:15:30.053995"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-08-24T00:02:10.617321"
+          "last_checked": "2026-08-24T00:15:35.358656"
         }
       }
     }

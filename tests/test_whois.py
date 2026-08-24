@@ -195,3 +195,57 @@ def test_detect_whois_changes_multiple_simultaneous():
     assert 'registrar_changed' in types
     assert 'nameservers_changed' in types
     assert 'whois_updated' in types
+
+
+def test_normalize_registrar():
+    """_normalize_registrar removes punctuation and entity suffixes"""
+    from monitors.whois import _normalize_registrar
+
+    # Test Real Madrid case that caused false positive
+    assert _normalize_registrar("Tucows Domains Inc.") == "TUCOWS"
+    assert _normalize_registrar("TUCOWS.COM, CO.") == "TUCOWS"
+
+    # Test other common formats
+    assert _normalize_registrar("Network Solutions, LLC") == "NETWORK SOLUTIONS"
+    assert _normalize_registrar("NETWORK SOLUTIONS LLC") == "NETWORK SOLUTIONS"
+    assert _normalize_registrar("GoDaddy.com, LLC") == "GODADDY"
+
+    # Test null/empty handling
+    assert _normalize_registrar(None) == ""
+    assert _normalize_registrar("") == ""
+
+
+def test_detect_whois_changes_registrar_format_variation():
+    """
+    detect_changes does NOT alert when registrar is same but format differs.
+
+    This test covers the real-world issue where python-whois library
+    returns different string formats for the same registrar:
+    - "Tucows Domains Inc." vs "TUCOWS.COM, CO."
+
+    Both should normalize to "TUCOWS" and NOT trigger registrar_changed.
+    """
+    from monitors.whois import detect_whois_changes
+
+    # Baseline saved with format 1
+    old_state = {
+        'registrar': 'Tucows Domains Inc.',
+        'nameservers': ['ns1.example.com']
+    }
+
+    # New query returns format 2 (different string, same company)
+    new_data = {
+        'registrar': 'TUCOWS.COM, CO.',
+        'nameservers': ['ns1.example.com']
+    }
+
+    changes = detect_whois_changes(old_state, new_data, 'test.com')
+
+    # Should NOT detect registrar change (normalized values are same)
+    types = [c['type'] for c in changes]
+    assert 'registrar_changed' not in types, \
+        "Registrar format variation should not trigger false positive"
+
+    # Should have no changes at all
+    assert len(changes) == 0, \
+        f"Expected no changes, got: {changes}"
