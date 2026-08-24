@@ -1,0 +1,130 @@
+name: Validate Real Environment (GitHub Actions)
+
+'on':
+  workflow_dispatch:
+    inputs:
+      run_number:
+        description: 'Run number (1, 2, 3) for tracking multiple executions'
+        required: false
+        default: '1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Runner Info
+        run: |
+          echo "================================"
+          echo "GITHUB ACTIONS RUNNER INFO"
+          echo "================================"
+          echo "Runner IP:"
+          curl -s ifconfig.me
+          echo
+          echo "Timestamp: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          echo "Run Number: ${{ github.event.inputs.run_number || '1' }}"
+          echo
+
+      - name: Test WHOIS - All 8 Domains
+        run: |
+          echo "================================"
+          echo "WHOIS CONNECTIVITY TEST"
+          echo "================================"
+          echo
+
+          # All domains from clubs.yaml
+          domains=(
+            "realmadrid.com"
+            "athletico.com.br"
+            "corinthians.com.br"
+            "gremio.net"
+            "gremio.com.br"
+            "santosfc.com.br"
+            "palmeiras.com.br"
+            "fcbarcelona.com"
+            "flamengo.com.br"
+          )
+
+          for domain in "${domains[@]}"; do
+            echo "=== $domain ==="
+
+            # Test TCP connection to port 43
+            if timeout 5 bash -c "echo | nc -v -w 3 $domain 43 2>&1" | grep -q "succeeded\|Connected"; then
+              echo "  Port 43: OPEN"
+            else
+              echo "  Port 43: BLOCKED (Connection refused or timeout)"
+            fi
+
+            # Try actual WHOIS query
+            if timeout 10 whois $domain 2>&1 | head -5 | grep -qi "registrar\|domain\|whois"; then
+              echo "  WHOIS query: SUCCESS"
+            else
+              echo "  WHOIS query: FAILED"
+            fi
+
+            echo
+          done
+
+      - name: Test Site Monitoring - All Enabled Pages
+        run: |
+          echo "================================"
+          echo "SITE MONITORING TEST"
+          echo "================================"
+          echo
+
+          USER_AGENT="Mozilla/5.0 (compatible; ZooomBot/1.0; +https://zooomsports.com/bot)"
+
+          # All pages from clubs with site_monitoring_enabled: true
+          declare -A pages=(
+            ["Athletico PR - Elenco"]="https://www.athletico.com.br/elenco"
+            ["Santos - Elenco"]="https://www.santosfc.com.br/elenco-profissional"
+            ["Santos - Parceiros"]="https://www.santosfc.com.br/parceiros"
+            ["Palmeiras - Elenco"]="https://www.palmeiras.com.br/elenco"
+            ["Palmeiras - Parceiros"]="https://www.palmeiras.com.br/parceiros"
+            ["Barcelona - Squad"]="https://www.fcbarcelona.com/es/futbol/primer-equipo/jugadores"
+            ["Barcelona - Sponsors"]="https://www.fcbarcelona.com/es/club/patrocinadores"
+            ["Flamengo - Elenco"]="https://www.flamengo.com.br/elenco"
+            ["Flamengo - Sponsors"]="https://www.flamengo.com.br/patrocinadores"
+          )
+
+          for label in "${!pages[@]}"; do
+            url="${pages[$label]}"
+
+            echo "=== $label ==="
+            echo "    URL: $url"
+
+            # HTTP request with ZooomBot User-Agent
+            http_code=$(curl -s -o /dev/null -w "%{http_code}" -A "$USER_AGENT" -m 10 "$url")
+
+            if [ "$http_code" == "200" ]; then
+              echo "    Result: HTTP $http_code - SUCCESS"
+            elif [ "$http_code" == "405" ]; then
+              echo "    Result: HTTP $http_code - METHOD NOT ALLOWED (Bot blocking)"
+            elif [ "$http_code" == "403" ]; then
+              echo "    Result: HTTP $http_code - FORBIDDEN (Bot blocking)"
+            elif [ "$http_code" == "404" ]; then
+              echo "    Result: HTTP $http_code - NOT FOUND"
+            elif [ "$http_code" == "000" ]; then
+              echo "    Result: TIMEOUT or CONNECTION FAILED"
+            else
+              echo "    Result: HTTP $http_code"
+            fi
+
+            echo
+          done
+
+      - name: Generate Summary
+        run: |
+          echo "================================"
+          echo "SUMMARY"
+          echo "================================"
+          echo
+          echo "This test validates what actually works from GitHub Actions environment,"
+          echo "not local environment."
+          echo
+          echo "Run this test 2-3 times throughout the day to confirm consistency."
+          echo
+          echo "Expected blockers:"
+          echo "  - WHOIS port 43: Some registrars block GitHub Actions IPs"
+          echo "  - HTTP 405/403: Some sites block bot User-Agent from cloud IPs"
+          echo
+          echo "Next step: Build table of what REALLY works in production."
