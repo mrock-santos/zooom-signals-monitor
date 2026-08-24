@@ -3,8 +3,8 @@
 # Data period: 2026-07-24 to 2026-08-23
 # Validation: False positives eliminated, robots.txt verified with ZooomBot/1.0 User-Agent
 #
-# WHOIS monitoring: All 8 clubs enabled
-# Site monitoring: 6 clubs enabled, 2 disabled (Corinthians HTTP 405, Grêmio HTTP 403)
+# WHOIS monitoring: All 8 clubs enabled (confirmed working on GitHub Actions)
+# Site monitoring: 5 clubs enabled, 3 disabled (Athletico HTTP 405, Corinthians HTTP 405, Grêmio HTTP 403)
 #
 # Distribution:
 # - Brazil: 6 clubs (Athletico PR, Corinthians, Grêmio, Santos, Palmeiras, Flamengo)
@@ -70,7 +70,7 @@ clubs:
       - Athletico PR
 
     whois_enabled: true
-    site_monitoring_enabled: true
+    site_monitoring_enabled: false  # HTTP 405 from GitHub Actions (bot blocking)
 
   # ========================================
   # 3. CORINTHIANS
