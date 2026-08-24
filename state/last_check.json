@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-08-24T00:15:38.373734",
+  "last_run": "2026-08-24T02:41:50.073701",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -11,17 +11,13 @@
             "PDNS80.ULTRADNS.BIZ",
             "PDNS80.ULTRADNS.COM",
             "PDNS80.ULTRADNS.NET",
-            "PDNS80.ULTRADNS.ORG",
-            "pdns80.ultradns.net",
-            "pdns80.ultradns.com",
-            "pdns80.ultradns.biz",
-            "pdns80.ultradns.org"
+            "PDNS80.ULTRADNS.ORG"
           ],
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-08-24T00:14:38.570360"
+          "last_checked": "2026-08-24T02:40:42.996538"
         }
       }
     },
@@ -31,11 +27,16 @@
           "registrar": null,
           "updated_date": "2023-11-06",
           "expiry_date": "2027-03-10",
-          "nameservers": [],
+          "nameservers": [
+            "ns-1006.awsdns-61.net",
+            "ns-1322.awsdns-37.org",
+            "ns-409.awsdns-51.com",
+            "ns-1674.awsdns-17.co.uk"
+          ],
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:40.624594"
+          "last_checked": "2026-08-24T02:40:45.567691"
         }
       },
       "site_monitoring": {
@@ -51,11 +52,16 @@
           "registrar": null,
           "updated_date": "2026-01-12",
           "expiry_date": "2029-01-29",
-          "nameservers": [],
+          "nameservers": [
+            "ns-1416.awsdns-49.org",
+            "ns-326.awsdns-40.com",
+            "ns-1021.awsdns-63.net",
+            "ns-1668.awsdns-16.co.uk"
+          ],
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:42.678401"
+          "last_checked": "2026-08-24T02:40:47.988520"
         }
       }
     },
@@ -73,17 +79,20 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-08-24T00:14:45.830737"
+          "last_checked": "2026-08-24T02:40:50.629407"
         },
         "gremio.com.br": {
           "registrar": null,
           "updated_date": "2026-07-29",
           "expiry_date": "2035-10-01",
-          "nameservers": [],
+          "nameservers": [
+            "ns1-02.azure-dns.com",
+            "ns2-02.azure-dns.net"
+          ],
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:47.863199"
+          "last_checked": "2026-08-24T02:40:53.057933"
         }
       }
     },
@@ -93,21 +102,24 @@
           "registrar": null,
           "updated_date": "2025-09-02",
           "expiry_date": "2035-09-01",
-          "nameservers": [],
+          "nameservers": [
+            "ns1.bdm.microsoftonline.com",
+            "ns2.bdm.microsoftonline.com"
+          ],
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:49.896361"
+          "last_checked": "2026-08-24T02:40:55.484578"
         }
       },
       "site_monitoring": {
         "/elenco-profissional": {
           "hash": "b842ee899cfde13b8cdd0916bdfbb82a",
-          "last_checked": "2026-08-24T00:15:07.886954"
+          "last_checked": "2026-08-24T02:41:17.696566"
         },
         "/parceiros": {
           "hash": "c05e05fb3b7606c122ea713cd3fccaad",
-          "last_checked": "2026-08-24T00:15:11.056385"
+          "last_checked": "2026-08-24T02:41:20.891877"
         }
       }
     },
@@ -117,22 +129,26 @@
           "registrar": null,
           "updated_date": "2025-12-10",
           "expiry_date": "2028-04-12",
-          "nameservers": [],
+          "nameservers": [
+            "ns1.aziondns.net",
+            "ns2.aziondns.com",
+            "ns3.aziondns.org"
+          ],
           "status": [
             "20260823 DSOK",
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:51.937706"
+          "last_checked": "2026-08-24T02:40:57.910741"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "c0ff6241e7cf163e07c135a32316212e",
-          "last_checked": "2026-08-24T00:15:14.862341"
+          "last_checked": "2026-08-24T02:41:25.025481"
         },
         "/parceiros": {
           "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
-          "last_checked": "2026-08-24T00:15:18.634457"
+          "last_checked": "2026-08-24T02:41:28.884273"
         }
       }
     },
@@ -146,27 +162,23 @@
             "NS-1465.AWSDNS-55.ORG",
             "NS-1812.AWSDNS-34.CO.UK",
             "NS-43.AWSDNS-05.COM",
-            "NS-706.AWSDNS-24.NET",
-            "ns-43.awsdns-05.com",
-            "ns-706.awsdns-24.net",
-            "ns-1812.awsdns-34.co.uk",
-            "ns-1465.awsdns-55.org"
+            "NS-706.AWSDNS-24.NET"
           ],
           "status": [
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-08-24T00:14:54.899693"
+          "last_checked": "2026-08-24T02:41:00.638546"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "53a0feb2cbbbdb0714c574f0ee03b3ab",
-          "last_checked": "2026-08-24T00:15:22.154897"
+          "last_checked": "2026-08-24T02:41:32.394411"
         },
         "/es/club/patrocinadores": {
           "hash": "c1564140ef88f4ab85af5ab638f576fe",
-          "last_checked": "2026-08-24T00:15:25.612346"
+          "last_checked": "2026-08-24T02:41:35.813191"
         }
       }
     },
@@ -176,21 +188,24 @@
           "registrar": null,
           "updated_date": "2026-06-30",
           "expiry_date": "2027-07-30",
-          "nameservers": [],
+          "nameservers": [
+            "deck.ns.gocache.com.br",
+            "jet.ns.gocache.com.br"
+          ],
           "status": [
             "published"
           ],
-          "last_checked": "2026-08-24T00:14:56.939453"
+          "last_checked": "2026-08-24T02:41:03.064232"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-08-24T00:15:30.053995"
+          "last_checked": "2026-08-24T02:41:41.450272"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-08-24T00:15:35.358656"
+          "last_checked": "2026-08-24T02:41:47.073502"
         }
       }
     }
