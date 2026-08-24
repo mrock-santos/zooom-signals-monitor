@@ -1,0 +1,34 @@
+name: Test WHOIS Connectivity
+
+'on':
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test WHOIS ports
+        run: |
+          echo "Testing WHOIS connectivity from GitHub Actions..."
+          echo
+
+          # Test domains that failed
+          for domain in realmadrid.com athletico.com.br gremio.net santosfc.com.br palmeiras.com.br; do
+            echo "=== Testing $domain ==="
+
+            # Test TCP connection to port 43
+            timeout 5 bash -c "echo | nc -v $domain 43 2>&1" || echo "Port 43 blocked"
+
+            # Try actual WHOIS query
+            timeout 5 whois $domain 2>&1 | head -5 || echo "WHOIS failed"
+
+            echo
+          done
+
+      - name: Show GitHub Actions IP
+        run: |
+          echo "GitHub Actions runner IP:"
+          curl -s ifconfig.me
+          echo
+          echo "IP range info:"
+          curl -s https://api.github.com/meta | jq -r '.actions[]' | head -10
