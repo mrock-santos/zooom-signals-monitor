@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import whois
 import time
 import logging
@@ -26,9 +28,11 @@ class WhoisMonitor:
             clubs: List of club dicts with 'domains' and 'whois_enabled'
 
         Returns:
-            {success: True, data: {club_id: {domain: {...}}}, error: None}
+            {success: True, data: {club_id: {domain: {...}}}, error: None,
+             errors: [{type, domain, error, critical}]}
         """
         results = {}
+        errors = []
 
         for club in clubs:
             if not club.get('whois_enabled', True):
@@ -45,10 +49,19 @@ class WhoisMonitor:
                     self.logger.error(f"WHOIS check failed for {domain}: {e}")
                     club_results[domain] = {'error': str(e)}
 
+                    # Record domain error for observability
+                    errors.append({
+                        'source': 'whois',
+                        'type': 'domain_error',
+                        'domain': domain,
+                        'error': str(e),
+                        'critical': False
+                    })
+
             if club_results:
                 results[club['id']] = club_results
 
-        return {'success': True, 'data': results, 'error': None}
+        return {'success': True, 'data': results, 'error': None, 'errors': errors}
 
     def _check_domain(self, domain: str) -> dict:
         """

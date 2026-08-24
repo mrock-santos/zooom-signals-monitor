@@ -1,0 +1,213 @@
+{
+  "last_run": "2026-08-24T00:02:13.625559",
+  "clubs": {
+    "real-madrid": {
+      "whois": {
+        "realmadrid.com": {
+          "registrar": "Tucows Domains Inc.",
+          "updated_date": "2024-10-01",
+          "expiry_date": "2034-09-23",
+          "nameservers": [
+            "PDNS80.ULTRADNS.BIZ",
+            "PDNS80.ULTRADNS.COM",
+            "PDNS80.ULTRADNS.NET",
+            "PDNS80.ULTRADNS.ORG"
+          ],
+          "status": [
+            "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+            "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
+          ],
+          "last_checked": "2026-08-24T00:01:13.579832"
+        }
+      },
+      "site_monitoring": {
+        "/es/futbol/plantilla": {
+          "hash": "b3e69ecff7be1b1ef4de1a4e37215139",
+          "last_checked": "2026-08-23T23:45:27.607974"
+        },
+        "/es/club/patrocinadores": {
+          "hash": "b3e69ecff7be1b1ef4de1a4e37215139",
+          "last_checked": "2026-08-23T23:45:30.682332"
+        }
+      }
+    },
+    "athletico-paranaense": {
+      "whois": {
+        "athletico.com.br": {
+          "registrar": null,
+          "updated_date": "2023-11-06",
+          "expiry_date": "2027-03-10",
+          "nameservers": [],
+          "status": [
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:15.718368"
+        }
+      },
+      "site_monitoring": {
+        "/elenco": {
+          "hash": "08ec1462f41e5e36879e76615deab5fb",
+          "last_checked": "2026-08-24T00:01:39.874516"
+        }
+      }
+    },
+    "corinthians": {
+      "whois": {
+        "corinthians.com.br": {
+          "registrar": null,
+          "updated_date": "2026-01-12",
+          "expiry_date": "2029-01-29",
+          "nameservers": [],
+          "status": [
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:17.761352"
+        }
+      }
+    },
+    "gremio": {
+      "whois": {
+        "gremio.net": {
+          "registrar": "Network Solutions, LLC",
+          "updated_date": "2023-09-04",
+          "expiry_date": "2028-09-16",
+          "nameservers": [
+            "NS1-03.AZURE-DNS.COM",
+            "NS2-03.AZURE-DNS.NET",
+            "NS3-03.AZURE-DNS.ORG"
+          ],
+          "status": [
+            "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
+          ],
+          "last_checked": "2026-08-24T00:01:21.048326"
+        },
+        "gremio.com.br": {
+          "registrar": null,
+          "updated_date": "2026-07-29",
+          "expiry_date": "2035-10-01",
+          "nameservers": [],
+          "status": [
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:23.089295"
+        }
+      }
+    },
+    "santos": {
+      "whois": {
+        "santosfc.com.br": {
+          "registrar": null,
+          "updated_date": "2025-09-02",
+          "expiry_date": "2035-09-01",
+          "nameservers": [],
+          "status": [
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:25.131802"
+        }
+      },
+      "site_monitoring": {
+        "/elenco-profissional": {
+          "hash": "b842ee899cfde13b8cdd0916bdfbb82a",
+          "last_checked": "2026-08-24T00:01:43.053536"
+        },
+        "/parceiros": {
+          "hash": "c05e05fb3b7606c122ea713cd3fccaad",
+          "last_checked": "2026-08-24T00:01:46.222984"
+        }
+      }
+    },
+    "palmeiras": {
+      "whois": {
+        "palmeiras.com.br": {
+          "registrar": null,
+          "updated_date": "2025-12-10",
+          "expiry_date": "2028-04-12",
+          "nameservers": [],
+          "status": [
+            "20260823 DSOK",
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:27.189419"
+        }
+      },
+      "site_monitoring": {
+        "/elenco": {
+          "hash": "c0ff6241e7cf163e07c135a32316212e",
+          "last_checked": "2026-08-24T00:01:50.277574"
+        },
+        "/parceiros": {
+          "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
+          "last_checked": "2026-08-24T00:01:54.057268"
+        }
+      }
+    },
+    "barcelona": {
+      "whois": {
+        "fcbarcelona.com": {
+          "registrar": "Entorno Digital, S.A.",
+          "updated_date": "2026-05-27",
+          "expiry_date": "2028-08-26",
+          "nameservers": [
+            "NS-1465.AWSDNS-55.ORG",
+            "NS-1812.AWSDNS-34.CO.UK",
+            "NS-43.AWSDNS-05.COM",
+            "NS-706.AWSDNS-24.NET",
+            "ns-43.awsdns-05.com",
+            "ns-706.awsdns-24.net",
+            "ns-1812.awsdns-34.co.uk",
+            "ns-1465.awsdns-55.org"
+          ],
+          "status": [
+            "ok https://icann.org/epp#ok",
+            "ok https://www.icann.org/epp#ok"
+          ],
+          "last_checked": "2026-08-24T00:01:30.135209"
+        },
+        "fcbarcelona.es": {
+          "registrar": null,
+          "updated_date": null,
+          "expiry_date": null,
+          "nameservers": [],
+          "status": [],
+          "last_checked": "2026-08-23T23:45:18.491423"
+        }
+      },
+      "site_monitoring": {
+        "/es/futbol/primer-equipo/jugadores": {
+          "hash": "53a0feb2cbbbdb0714c574f0ee03b3ab",
+          "last_checked": "2026-08-24T00:01:57.722495"
+        },
+        "/es/club/patrocinadores": {
+          "hash": "c1564140ef88f4ab85af5ab638f576fe",
+          "last_checked": "2026-08-24T00:02:01.738372"
+        }
+      }
+    },
+    "flamengo": {
+      "whois": {
+        "flamengo.com.br": {
+          "registrar": null,
+          "updated_date": "2026-06-30",
+          "expiry_date": "2027-07-30",
+          "nameservers": [],
+          "status": [
+            "published"
+          ],
+          "last_checked": "2026-08-24T00:01:32.193921"
+        }
+      },
+      "site_monitoring": {
+        "/elenco": {
+          "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
+          "last_checked": "2026-08-24T00:02:06.127564"
+        },
+        "/patrocinadores": {
+          "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
+          "last_checked": "2026-08-24T00:02:10.617321"
+        }
+      }
+    }
+  },
+  "errors": []
+}

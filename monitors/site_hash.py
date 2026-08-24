@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import requests
 import hashlib
 import time
@@ -29,9 +31,11 @@ class SiteMonitor:
             clubs: List of club dicts with official_site config
 
         Returns:
-            {success: True, data: {club_id: {page_path: {hash, last_checked}}}, error: None}
+            {success: True, data: {club_id: {page_path: {hash, last_checked}}},
+             error: None, errors: [{type, url, error, critical}]}
         """
         results = {}
+        errors = []
 
         for club in clubs:
             if not club.get('site_monitoring_enabled', True):
@@ -62,10 +66,19 @@ class SiteMonitor:
                     self.logger.error(f"Site check failed for {full_url}: {e}")
                     club_results[page_path] = {'error': str(e)}
 
+                    # Record page error for observability
+                    errors.append({
+                        'source': 'site',
+                        'type': 'page_error',
+                        'url': full_url,
+                        'error': str(e),
+                        'critical': False
+                    })
+
             if club_results:
                 results[club['id']] = club_results
 
-        return {'success': True, 'data': results, 'error': None}
+        return {'success': True, 'data': results, 'error': None, 'errors': errors}
 
     def _fetch_page(self, url: str) -> str:
         """Fetch page HTML."""

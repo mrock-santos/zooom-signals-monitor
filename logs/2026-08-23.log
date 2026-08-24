@@ -1,0 +1,24 @@
+2026-08-23 20:44:50 [INFO] DRY RUN MODE - no alerts will be sent
+2026-08-23 20:44:50 [INFO] Loaded 8 clubs from config
+2026-08-23 20:44:50 [INFO] Running WHOIS monitor...
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Real Madrid - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Athletico Paranaense - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Corinthians - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Grêmio - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Grêmio - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Santos - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Palmeiras - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Barcelona - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Barcelona - new_domain
+2026-08-23 20:45:22 [INFO] WHOIS change detected: Flamengo - new_domain
+2026-08-23 20:45:27 [INFO] Running Site Monitoring...
+2026-08-23 20:45:37 [ERROR] Site check failed for https://www.athletico.com.br/parceiros: 404 Client Error: Not Found for url: https://www.athletico.com.br/parceiros
+2026-08-23 20:45:41 [ERROR] Site check failed for https://www.santosfc.com.br/patrocinadores: 404 Client Error: Not Found for url: https://www.santosfc.com.br/patrocinadores
+2026-08-23 20:46:05 [INFO] Run completed - 0 alerts sent, 0 errors
+2026-08-23 21:01:02 [INFO] DRY RUN MODE - no alerts will be sent
+2026-08-23 21:01:02 [INFO] Loaded 8 clubs from config
+2026-08-23 21:01:02 [INFO] Running WHOIS monitor...
+2026-08-23 21:01:34 [INFO] WHOIS change detected: Real Madrid - registrar_changed
+2026-08-23 21:01:34 [INFO] WHOIS change detected: Real Madrid - nameservers_changed
+2026-08-23 21:01:39 [INFO] Running Site Monitoring...
+2026-08-23 21:02:13 [INFO] Run completed - 0 alerts sent, 0 monitor crashes, 0 page/domain errors

@@ -11,6 +11,8 @@ Usage:
     python main.py --dry-run  # run monitors, log only, no alerts
 """
 
+from __future__ import annotations
+
 import argparse
 import copy
 import json
@@ -143,6 +145,10 @@ def _run_whois(clubs, config, previous_state, telegram, logger, out) -> None:
 
     out['results']['whois'] = result['data']
 
+    # Collect domain-level errors for observability
+    if 'errors' in result and result['errors']:
+        out['errors'].extend(result['errors'])
+
 
 def _run_site(clubs, config, previous_state, telegram, logger, out) -> None:
     logger.info("Running Site Monitoring...")
@@ -180,6 +186,10 @@ def _run_site(clubs, config, previous_state, telegram, logger, out) -> None:
                     out['alerts_sent'] += 1
 
     out['results']['site_monitoring'] = result['data']
+
+    # Collect page-level errors for observability
+    if 'errors' in result and result['errors']:
+        out['errors'].extend(result['errors'])
 
 
 def _run_trends(clubs, config, previous_state, telegram, logger, out) -> None:
@@ -300,9 +310,13 @@ def main():
     }
     save_state(STATE_FILE, new_state)
 
+    # Separate critical (monitor crash) vs non-critical (page/domain) errors
+    critical_errors = [e for e in run_result['errors'] if e.get('critical', True)]
+    page_errors = [e for e in run_result['errors'] if not e.get('critical', True)]
+
     logger.info(
-        "Run completed - %d alerts sent, %d errors",
-        run_result['alerts_sent'], len(run_result['errors'])
+        "Run completed - %d alerts sent, %d monitor crashes, %d page/domain errors",
+        run_result['alerts_sent'], len(critical_errors), len(page_errors)
     )
 
     # Note: git commit of state/ and logs/ is handled by the GitHub Actions

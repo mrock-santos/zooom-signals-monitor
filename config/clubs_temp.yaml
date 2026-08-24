@@ -1,0 +1,37 @@
+clubs:
+- id: real-madrid
+  name: Real Madrid
+  score: 547
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Real Madrid
+  - TODO-player-name
+- id: corinthians
+  name: Corinthians
+  score: 35
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Corinthians
+  - TODO-player-name

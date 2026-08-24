@@ -1,0 +1,181 @@
+clubs:
+- id: real-madrid
+  name: Real Madrid
+  score: 579
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Real Madrid
+  - TODO-player-name
+- id: corinthians
+  name: Corinthians
+  score: 80
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Corinthians
+  - TODO-player-name
+- id: palmeiras
+  name: Palmeiras
+  score: 21
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Palmeiras
+  - TODO-player-name
+- id: barcelona
+  name: Barcelona
+  score: 17
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Barcelona
+  - TODO-player-name
+- id: flamengo
+  name: Flamengo
+  score: 15
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Flamengo
+  - TODO-player-name
+- id: santos
+  name: Santos
+  score: 7
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Santos
+  - TODO-player-name
+- id: athletico-paranaense
+  name: Athletico Paranaense
+  score: 7
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Athletico Paranaense
+  - TODO-player-name
+- id: atletico-madrid
+  name: Atletico Madrid
+  score: 6
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Atletico Madrid
+  - TODO-player-name
+- id: grêmio
+  name: Grêmio
+  score: 6
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Grêmio
+  - TODO-player-name
+- id: chelsea
+  name: Chelsea
+  score: 4
+  league: TODO
+  country: TODO
+  domains:
+  - TODO.com
+  official_site:
+    url: https://TODO.com
+    monitor_pages:
+    - path: /elenco
+      label: Elenco
+      type: structural
+  whois_enabled: true
+  site_monitoring_enabled: true
+  trends_keywords:
+  - Chelsea
+  - TODO-player-name

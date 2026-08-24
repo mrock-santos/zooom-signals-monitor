@@ -42,7 +42,7 @@ clubs:
       - Courtois
 
     whois_enabled: true
-    site_monitoring_enabled: true
+    site_monitoring_enabled: false  # Bot blocking: ZooomBot returns ERROR for all pages
 
   # ========================================
   # 2. ATHLETICO PARANAENSE
@@ -54,7 +54,7 @@ clubs:
 
     domains:
       - athletico.com.br
-      - furacaoatletico.com
+      # furacaoatletico.com removed: domain not registered (WHOIS returns "No match")
 
     official_site:
       url: https://www.athletico.com.br
@@ -62,9 +62,7 @@ clubs:
         - path: /elenco
           label: Elenco (Squad)
           type: structural
-        - path: /parceiros
-          label: Parceiros (Sponsors)
-          type: structural
+        # /parceiros removed: HTTP 404 (page not found)
 
     trends_keywords:
       - Athletico Paranaense
@@ -149,8 +147,8 @@ clubs:
         - path: /elenco-profissional
           label: Elenco Profissional (Squad)
           type: structural
-        - path: /patrocinadores
-          label: Patrocinadores (Sponsors)
+        - path: /parceiros
+          label: Parceiros (Sponsors)
           type: structural
 
     trends_keywords:
@@ -199,7 +197,7 @@ clubs:
 
     domains:
       - fcbarcelona.com
-      - fcbarcelona.es
+      # fcbarcelona.es removed: WHOIS socket timeout (no useful data)
 
     official_site:
       url: https://www.fcbarcelona.com
