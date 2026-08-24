@@ -149,6 +149,39 @@ def _normalize_registrar(registrar: str | None) -> str:
     return ' '.join(filtered_words).strip()
 
 
+def _normalize_nameservers(nameservers: list | None) -> set:
+    """
+    Normalize nameserver list for comparison.
+
+    Converts to lowercase, strips whitespace, and returns as set to remove
+    duplicates and ignore order.
+
+    This prevents false positives from format variations like:
+    - ["PDNS80.ULTRADNS.COM", "pdns80.ultradns.com"] → same server
+    - ["ns1.example.com", "ns2.example.com"] vs ["ns2.example.com", "ns1.example.com"] → same list
+
+    Args:
+        nameservers: List of nameserver strings from WHOIS (or None)
+
+    Returns:
+        Set of normalized nameserver strings (lowercase, stripped)
+
+    Examples:
+        >>> _normalize_nameservers(["PDNS80.ULTRADNS.COM", "pdns80.ultradns.com"])
+        {'pdns80.ultradns.com'}
+        >>> _normalize_nameservers(["NS1.EXAMPLE.COM", "NS2.EXAMPLE.COM"])
+        {'ns1.example.com', 'ns2.example.com'}
+        >>> _normalize_nameservers(None)
+        set()
+        >>> _normalize_nameservers([])
+        set()
+    """
+    if not nameservers:
+        return set()
+
+    return {ns.lower().strip() for ns in nameservers if ns}
+
+
 def detect_whois_changes(old_data: dict | None, new_data: dict, domain: str) -> list:
     """
     Detect changes between old and new WHOIS data.
@@ -188,15 +221,16 @@ def detect_whois_changes(old_data: dict | None, new_data: dict, domain: str) -> 
             'new': new_data.get('registrar')
         })
 
-    # Nameservers changed
-    old_ns = set(old_data.get('nameservers', []))
-    new_ns = set(new_data.get('nameservers', []))
-    if old_ns != new_ns:
+    # Nameservers changed (use normalized comparison to avoid case/order variations)
+    old_ns_normalized = _normalize_nameservers(old_data.get('nameservers', []))
+    new_ns_normalized = _normalize_nameservers(new_data.get('nameservers', []))
+
+    if old_ns_normalized != new_ns_normalized:
         changes.append({
             'type': 'nameservers_changed',
             'domain': domain,
-            'added': list(new_ns - old_ns),
-            'removed': list(old_ns - new_ns)
+            'added': list(new_ns_normalized - old_ns_normalized),
+            'removed': list(old_ns_normalized - new_ns_normalized)
         })
 
     # Updated date changed (indicates recent modification)
