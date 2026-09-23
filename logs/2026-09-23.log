@@ -1,0 +1,8 @@
+2026-09-23 14:29:08 [INFO] Loaded 8 clubs from config
+2026-09-23 14:29:08 [INFO] Running WHOIS monitor...
+2026-09-23 14:29:37 [INFO] Running Site Monitoring...
+2026-09-23 14:30:12 [INFO] Site change detected: Barcelona - /es/futbol/primer-equipo/jugadores
+2026-09-23 14:30:13 [INFO] Telegram alert sent successfully
+2026-09-23 14:30:13 [INFO] Site change detected: Barcelona - /es/club/patrocinadores
+2026-09-23 14:30:14 [INFO] Telegram alert sent successfully
+2026-09-23 14:30:14 [INFO] Run completed - 2 alerts sent, 0 monitor crashes, 0 page/domain errors
