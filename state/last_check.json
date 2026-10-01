@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-09-30T16:09:14.432568",
+  "last_run": "2026-10-01T16:45:43.297656",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-09-30T16:08:06.623088"
+          "last_checked": "2026-10-01T16:44:40.404716"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:09.163444"
+          "last_checked": "2026-10-01T16:44:42.978781"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:11.526226"
+          "last_checked": "2026-10-01T16:44:45.391754"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-09-30T16:08:14.039352"
+          "last_checked": "2026-10-01T16:44:47.890160"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:16.405660"
+          "last_checked": "2026-10-01T16:44:50.313885"
         }
       }
     },
@@ -109,17 +109,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:18.769428"
+          "last_checked": "2026-10-01T16:44:52.734633"
         }
       },
       "site_monitoring": {
         "/elenco-profissional": {
           "hash": "b842ee899cfde13b8cdd0916bdfbb82a",
-          "last_checked": "2026-09-30T16:08:34.705642"
+          "last_checked": "2026-10-01T16:45:09.225115"
         },
         "/parceiros": {
           "hash": "c05e05fb3b7606c122ea713cd3fccaad",
-          "last_checked": "2026-09-30T16:08:38.780763"
+          "last_checked": "2026-10-01T16:45:13.299878"
         }
       }
     },
@@ -135,20 +135,20 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20260930 DSOK",
+            "20261001 DSOK",
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:21.129380"
+          "last_checked": "2026-10-01T16:44:55.151693"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "c0ff6241e7cf163e07c135a32316212e",
-          "last_checked": "2026-09-30T16:08:46.411167"
+          "last_checked": "2026-10-01T16:45:17.017627"
         },
         "/parceiros": {
           "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
-          "last_checked": "2026-09-30T16:08:49.931094"
+          "last_checked": "2026-10-01T16:45:20.487718"
         }
       }
     },
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-09-30T16:08:23.788998"
+          "last_checked": "2026-10-01T16:44:58.396171"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "28fdbb02fd90d744a713e04176b3e0a0",
-          "last_checked": "2026-09-30T16:08:53.388755"
+          "last_checked": "2026-10-01T16:45:23.933312"
         },
         "/es/club/patrocinadores": {
           "hash": "aad8653652d27cc862e971a9ac36c6f5",
-          "last_checked": "2026-09-30T16:08:57.563777"
+          "last_checked": "2026-10-01T16:45:27.570918"
         }
       }
     },
@@ -195,17 +195,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-09-30T16:08:26.157844"
+          "last_checked": "2026-10-01T16:45:00.815205"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-09-30T16:09:04.237289"
+          "last_checked": "2026-10-01T16:45:34.075682"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-09-30T16:09:09.983116"
+          "last_checked": "2026-10-01T16:45:40.297462"
         }
       }
     }
