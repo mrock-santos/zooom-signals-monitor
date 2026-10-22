@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-10-21T14:44:50.649457",
+  "last_run": "2026-10-22T14:44:38.595575",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-10-21T14:43:45.778997"
+          "last_checked": "2026-10-22T14:43:42.211137"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-21T14:43:48.290891"
+          "last_checked": "2026-10-22T14:43:44.765634"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-21T14:43:50.651676"
+          "last_checked": "2026-10-22T14:43:47.204005"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-10-21T14:43:53.127184"
+          "last_checked": "2026-10-22T14:43:49.794328"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-21T14:43:55.491759"
+          "last_checked": "2026-10-22T14:43:52.212808"
         }
       }
     },
@@ -109,7 +109,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-21T14:43:57.846109"
+          "last_checked": "2026-10-22T14:43:54.632141"
         }
       },
       "site_monitoring": {
@@ -135,20 +135,20 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20261021 DSOK",
+            "20261022 DSOK",
             "published"
           ],
-          "last_checked": "2026-10-21T14:44:00.211269"
+          "last_checked": "2026-10-22T14:43:57.061170"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "c0ff6241e7cf163e07c135a32316212e",
-          "last_checked": "2026-10-21T14:44:21.340678"
+          "last_checked": "2026-10-22T14:44:11.710975"
         },
         "/parceiros": {
           "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
-          "last_checked": "2026-10-21T14:44:28.135146"
+          "last_checked": "2026-10-22T14:44:15.456915"
         }
       }
     },
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-10-21T14:44:03.585299"
+          "last_checked": "2026-10-22T14:44:00.679321"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "1b58c60018bf18540c0a1f69a7787fd2",
-          "last_checked": "2026-10-21T14:44:31.582217"
+          "last_checked": "2026-10-22T14:44:19.297317"
         },
         "/es/club/patrocinadores": {
           "hash": "d9c582d231bb3fa0f03e07716452b5c7",
-          "last_checked": "2026-10-21T14:44:35.203490"
+          "last_checked": "2026-10-22T14:44:23.216741"
         }
       }
     },
@@ -195,20 +195,35 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-21T14:44:05.957471"
+          "last_checked": "2026-10-22T14:44:03.111770"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-21T14:44:41.933692"
+          "last_checked": "2026-10-22T14:44:29.923784"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-21T14:44:47.649190"
+          "last_checked": "2026-10-22T14:44:35.595403"
         }
       }
     }
   },
-  "errors": []
+  "errors": [
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.santosfc.com.br/elenco-profissional",
+      "error": "403 Client Error: Forbidden for url: https://www.santosfc.com.br/elenco-profissional",
+      "critical": false
+    },
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.santosfc.com.br/parceiros",
+      "error": "403 Client Error: Forbidden for url: https://www.santosfc.com.br/parceiros",
+      "critical": false
+    }
+  ]
 }
