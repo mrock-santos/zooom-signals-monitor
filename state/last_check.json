@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-10-25T14:00:14.913153",
+  "last_run": "2026-10-26T16:21:40.604120",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-10-25T13:59:12.538134"
+          "last_checked": "2026-10-26T16:20:31.870240"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:15.119085"
+          "last_checked": "2026-10-26T16:20:34.412413"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:17.534044"
+          "last_checked": "2026-10-26T16:20:36.810367"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-10-25T13:59:20.113348"
+          "last_checked": "2026-10-26T16:20:39.384159"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:22.516738"
+          "last_checked": "2026-10-26T16:20:41.791590"
         }
       }
     },
@@ -109,17 +109,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:24.929909"
+          "last_checked": "2026-10-26T16:20:44.185913"
         }
       },
       "site_monitoring": {
         "/elenco-profissional": {
           "hash": "b842ee899cfde13b8cdd0916bdfbb82a",
-          "last_checked": "2026-10-25T13:59:41.157167"
+          "last_checked": "2026-10-26T16:21:00.366844"
         },
         "/parceiros": {
           "hash": "c05e05fb3b7606c122ea713cd3fccaad",
-          "last_checked": "2026-10-25T13:59:45.057117"
+          "last_checked": "2026-10-26T16:21:04.406507"
         }
       }
     },
@@ -135,10 +135,10 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20261025 DSOK",
+            "20261026 DSOK",
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:27.342541"
+          "last_checked": "2026-10-26T16:20:46.580245"
         }
       },
       "site_monitoring": {
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-10-25T13:59:30.612898"
+          "last_checked": "2026-10-26T16:20:49.837757"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
-          "hash": "796f0ad54ec3d2a7f8fbe4c4f0d0c7f5",
-          "last_checked": "2026-10-25T13:59:55.961535"
+          "hash": "591dde85a2658b89545a6273cacc98f5",
+          "last_checked": "2026-10-26T16:21:08.707113"
         },
         "/es/club/patrocinadores": {
-          "hash": "2f8e58c2eb0db693aeb8b6e032ac0746",
-          "last_checked": "2026-10-25T14:00:00.121801"
+          "hash": "af94620ee845ebe019f43300acff3971",
+          "last_checked": "2026-10-26T16:21:12.671318"
         }
       }
     },
@@ -195,20 +195,35 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-25T13:59:32.999361"
+          "last_checked": "2026-10-26T16:20:52.215633"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-25T14:00:05.825359"
+          "last_checked": "2026-10-26T16:21:30.177410"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-25T14:00:11.912989"
+          "last_checked": "2026-10-26T16:21:36.493238"
         }
       }
     }
   },
-  "errors": []
+  "errors": [
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.palmeiras.com.br/elenco",
+      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+      "critical": false
+    },
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.palmeiras.com.br/parceiros",
+      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+      "critical": false
+    }
+  ]
 }
