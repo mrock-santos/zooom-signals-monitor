@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-10-27T15:35:55.659654",
+  "last_run": "2026-10-28T16:19:37.026684",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-10-27T15:35:02.536225"
+          "last_checked": "2026-10-28T16:18:50.794010"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:04.980517"
+          "last_checked": "2026-10-28T16:18:53.310765"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:07.386396"
+          "last_checked": "2026-10-28T16:18:55.671992"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-10-27T15:35:09.817296"
+          "last_checked": "2026-10-28T16:18:58.276559"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:12.137824"
+          "last_checked": "2026-10-28T16:19:00.646677"
         }
       }
     },
@@ -109,7 +109,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:14.460489"
+          "last_checked": "2026-10-28T16:19:03.009168"
         }
       },
       "site_monitoring": {
@@ -135,10 +135,10 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20261027 DSOK",
+            "20261028 DSOK",
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:16.780116"
+          "last_checked": "2026-10-28T16:19:05.374007"
         }
       },
       "site_monitoring": {
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-10-27T15:35:19.778750"
+          "last_checked": "2026-10-28T16:19:08.725403"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "591dde85a2658b89545a6273cacc98f5",
-          "last_checked": "2026-10-27T15:35:37.614257"
+          "last_checked": "2026-10-28T16:19:18.892141"
         },
         "/es/club/patrocinadores": {
           "hash": "af94620ee845ebe019f43300acff3971",
-          "last_checked": "2026-10-27T15:35:41.287317"
+          "last_checked": "2026-10-28T16:19:22.260998"
         }
       }
     },
@@ -195,22 +195,36 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-10-27T15:35:22.106861"
+          "last_checked": "2026-10-28T16:19:11.090322"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-27T15:35:46.971441"
+          "last_checked": "2026-10-28T16:19:28.198395"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-10-27T15:35:52.659453"
+          "last_checked": "2026-10-28T16:19:34.026456"
         }
       }
     }
   },
   "errors": [
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.santosfc.com.br/elenco-profissional",
+      "error": "403 Client Error: Forbidden for url: https://www.santosfc.com.br/elenco-profissional",
+      "critical": false
+    },
+    {
+      "source": "site",
+      "type": "page_error",
+      "url": "https://www.santosfc.com.br/parceiros",
+      "error": "403 Client Error: Forbidden for url: https://www.santosfc.com.br/parceiros",
+      "critical": false
+    },
     {
       "source": "site",
       "type": "page_error",
