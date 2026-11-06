@@ -1,0 +1,8 @@
+2026-11-06 16:59:15 [INFO] Loaded 8 clubs from config
+2026-11-06 16:59:15 [INFO] Running WHOIS monitor...
+2026-11-06 16:59:43 [INFO] Running Site Monitoring...
+2026-11-06 16:59:43 [ERROR] Site check failed for https://www.santosfc.com.br/elenco-profissional: 403 Client Error: Forbidden for url: https://www.santosfc.com.br/elenco-profissional
+2026-11-06 16:59:43 [ERROR] Site check failed for https://www.santosfc.com.br/parceiros: 403 Client Error: Forbidden for url: https://www.santosfc.com.br/parceiros
+2026-11-06 16:59:44 [ERROR] Site check failed for https://www.palmeiras.com.br/elenco: 500 Server Error: Internal Server Error for url: https://www.palmeiras.com.br/elenco
+2026-11-06 16:59:46 [ERROR] Site check failed for https://www.palmeiras.com.br/parceiros: 500 Server Error: Internal Server Error for url: https://www.palmeiras.com.br/parceiros
+2026-11-06 17:00:05 [INFO] Run completed - 0 alerts sent, 0 monitor crashes, 4 page/domain errors
