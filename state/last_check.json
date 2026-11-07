@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-06T17:00:05.504260",
+  "last_run": "2026-11-07T15:58:04.363715",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-11-06T16:59:16.341601"
+          "last_checked": "2026-11-07T15:57:17.028527"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:18.930719"
+          "last_checked": "2026-11-07T15:57:19.567053"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:21.352578"
+          "last_checked": "2026-11-07T15:57:21.965666"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-11-06T16:59:23.667562"
+          "last_checked": "2026-11-07T15:57:24.300549"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:26.092271"
+          "last_checked": "2026-11-07T15:57:26.709492"
         }
       }
     },
@@ -109,7 +109,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:28.516153"
+          "last_checked": "2026-11-07T15:57:29.107307"
         }
       },
       "site_monitoring": {
@@ -135,10 +135,10 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20261106 DSOK",
+            "20261107 DSOK",
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:30.932095"
+          "last_checked": "2026-11-07T15:57:31.505828"
         }
       },
       "site_monitoring": {
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-11-06T16:59:33.729282"
+          "last_checked": "2026-11-07T15:57:34.219057"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "13a0ad8d921a4cf2a54f077d69c664ec",
-          "last_checked": "2026-11-06T16:59:46.784218"
+          "last_checked": "2026-11-07T15:57:45.077375"
         },
         "/es/club/patrocinadores": {
           "hash": "b1a672274bd39b616f4efc841c1db9d0",
-          "last_checked": "2026-11-06T16:59:50.550918"
+          "last_checked": "2026-11-07T15:57:48.822790"
         }
       }
     },
@@ -195,17 +195,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-06T16:59:36.148732"
+          "last_checked": "2026-11-07T15:57:36.615281"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-11-06T16:59:56.782671"
+          "last_checked": "2026-11-07T15:57:54.871723"
         },
         "/patrocinadores": {
           "hash": "da5aa53c8b9535ebc04f3813a34cbedd",
-          "last_checked": "2026-11-06T17:00:02.504090"
+          "last_checked": "2026-11-07T15:58:01.363535"
         }
       }
     }
@@ -229,14 +229,14 @@
       "source": "site",
       "type": "page_error",
       "url": "https://www.palmeiras.com.br/elenco",
-      "error": "500 Server Error: Internal Server Error for url: https://www.palmeiras.com.br/elenco",
+      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
       "critical": false
     },
     {
       "source": "site",
       "type": "page_error",
       "url": "https://www.palmeiras.com.br/parceiros",
-      "error": "500 Server Error: Internal Server Error for url: https://www.palmeiras.com.br/parceiros",
+      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
       "critical": false
     }
   ]
