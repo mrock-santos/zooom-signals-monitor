@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-13T17:25:44.188190",
+  "last_run": "2026-11-14T16:12:35.079011",
   "clubs": {
     "real-madrid": {
       "whois": {
@@ -17,7 +17,7 @@
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
             "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited"
           ],
-          "last_checked": "2026-11-13T17:24:47.567032"
+          "last_checked": "2026-11-14T16:11:40.696081"
         }
       }
     },
@@ -36,7 +36,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-13T17:24:50.042067"
+          "last_checked": "2026-11-14T16:11:43.211563"
         }
       },
       "site_monitoring": {
@@ -61,7 +61,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-13T17:24:52.401752"
+          "last_checked": "2026-11-14T16:11:45.595682"
         }
       }
     },
@@ -79,7 +79,7 @@
           "status": [
             "clientTransferProhibited https://icann.org/epp#clientTransferProhibited"
           ],
-          "last_checked": "2026-11-13T17:24:54.837067"
+          "last_checked": "2026-11-14T16:11:47.880583"
         },
         "gremio.com.br": {
           "registrar": null,
@@ -92,7 +92,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-13T17:24:57.194091"
+          "last_checked": "2026-11-14T16:11:50.267567"
         }
       }
     },
@@ -109,7 +109,7 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-13T17:24:59.541520"
+          "last_checked": "2026-11-14T16:11:52.650429"
         }
       },
       "site_monitoring": {
@@ -135,20 +135,20 @@
             "ns3.aziondns.org"
           ],
           "status": [
-            "20261113 DSOK",
+            "20261114 DSOK",
             "published"
           ],
-          "last_checked": "2026-11-13T17:25:01.909781"
+          "last_checked": "2026-11-14T16:11:55.035240"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "c0ff6241e7cf163e07c135a32316212e",
-          "last_checked": "2026-11-13T17:25:16.656737"
+          "last_checked": "2026-11-14T16:12:09.429810"
         },
         "/parceiros": {
           "hash": "53cbf3512b3fbb1dde400da0d5866dc0",
-          "last_checked": "2026-11-13T17:25:21.796578"
+          "last_checked": "2026-11-14T16:12:13.939980"
         }
       }
     },
@@ -168,17 +168,17 @@
             "ok https://icann.org/epp#ok",
             "ok https://www.icann.org/epp#ok"
           ],
-          "last_checked": "2026-11-13T17:25:04.674679"
+          "last_checked": "2026-11-14T16:11:57.727045"
         }
       },
       "site_monitoring": {
         "/es/futbol/primer-equipo/jugadores": {
           "hash": "13a0ad8d921a4cf2a54f077d69c664ec",
-          "last_checked": "2026-11-13T17:25:25.237638"
+          "last_checked": "2026-11-14T16:12:17.373248"
         },
         "/es/club/patrocinadores": {
           "hash": "b1a672274bd39b616f4efc841c1db9d0",
-          "last_checked": "2026-11-13T17:25:29.284638"
+          "last_checked": "2026-11-14T16:12:21.009410"
         }
       }
     },
@@ -195,17 +195,17 @@
           "status": [
             "published"
           ],
-          "last_checked": "2026-11-13T17:25:07.047348"
+          "last_checked": "2026-11-14T16:12:00.118032"
         }
       },
       "site_monitoring": {
         "/elenco": {
           "hash": "9d239532353525b157d730d40fad8830",
-          "last_checked": "2026-11-13T17:25:35.326962"
+          "last_checked": "2026-11-14T16:12:26.958113"
         },
         "/patrocinadores": {
           "hash": "9d239532353525b157d730d40fad8830",
-          "last_checked": "2026-11-13T17:25:41.188002"
+          "last_checked": "2026-11-14T16:12:32.078770"
         }
       }
     }
